@@ -7,21 +7,6 @@ Blockly.Constants = {};
 Blockly.Constants.Colour = {};
 Blockly.Constants.Colour.HUE = 20;
 Blockly.defineBlocksWithJsonArray([{
-  type: "lda",
-  message0: "%1",
-  args0: [
-    {
-      type: "input_value",
-      name: "ADDR",
-      check: "Number"
-    }
-  ],
-  previousStatement: null,
-  nextStatement: null,
-  colour: 270,
-  tooltip: "Load 명령어",
-  helpUrl: "https://en.wikipedia.org/wiki/Little_man_computer"
-}, {
     type: "colour_picker",
     message0: "%1",
     args0: [{
