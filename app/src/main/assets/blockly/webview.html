@@ -2,8 +2,8 @@
 <!-- HTML file to host Blockly in a mobile WebView. -->
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <style type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <style type="text/css">
     html, body, #blocklyDiv {
       border: 0;
       height: 100%;
@@ -11,26 +11,36 @@
       padding: 0;
       width: 100%;
     }
-  </style>
-  <script src="blockly_compressed.js"></script>
-  <script src="blocks_compressed.js"></script>
-  <script src="lmc_compressed.js"></script>
-  <script src="msg/js/en.js"></script>
+
+    </style>
+    <script src="blockly_compressed.js"></script>
+    <script src="blocks_compressed.js"></script>
+    <script src="lmc_compressed.js"></script>
+    <script src="msg/js/en.js"></script>
 </head>
 <body>
-  <div id="blocklyDiv"></div>
+<div id="blocklyDiv"></div>
 
-  <xml id='toolbox'>
+<xml id='toolbox'>
     <block type="lda"></block>
-  </xml>
+</xml>
 
-  <script type="text/javascript">
+<script type="text/javascript">
     var workspacePlayground = Blockly.inject('blocklyDiv', {
-          media: 'media/',
-          toolbox: document.getElementById('toolbox'),
-          zoom: {controls: true},
-          trashcan: true
-        });
-  </script>
+        media: 'media/',
+        toolbox: document.getElementById('toolbox'),
+        zoom: {controls: true},
+        trashcan: true});
+
+    function onSelectEvent(event) {
+        console.log(event);
+        if (event.type == Blockly.Events.CHANGE && event.element == 'comment') {
+            console.log('Event!' + 'Id : ' + event.blockId +  'Old : ' + event.oldValue + ', New : ' + event.newValue);
+            workspace.removeChangeListener(onFirstComment);
+        }
+    }
+    workspacePlayground.addChangeListener(onSelectEvent);
+
+</script>
 </body>
 </html>
