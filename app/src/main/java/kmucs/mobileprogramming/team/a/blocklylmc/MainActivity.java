@@ -3,6 +3,7 @@ package kmucs.mobileprogramming.team.a.blocklylmc;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -48,5 +49,6 @@ public class MainActivity extends AppCompatActivity {
     @JavascriptInterface
     public void getCode(String code){
         Toast.makeText(getApplicationContext(), code, Toast.LENGTH_LONG).show();
+        startActivity(new Intent(this, EmulatorActivity.class));
     }
 }

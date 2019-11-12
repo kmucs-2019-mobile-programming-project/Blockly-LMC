@@ -7,5 +7,34 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    <style name="RegisterText" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textAlignment">center</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+    </style>
+    <style name="RegisterLabel" parent="@style/RegisterText">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="RegisterValue" parent="@style/RegisterText">
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="LMC.Button" parent="@style/Widget.AppCompat.ImageButton">
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <style name="LMC.Button.Colored" parent="LMC.Button">
+        <item name="android:tint">@android:color/white</item>
+        <item name="backgroundTint">@color/colorAccent</item>
+    </style>
+    <style name="LMC.Button.Borderless" parent="LMC.Button">
+        <item name="android:background">@drawable/abc_btn_borderless_material</item>
+    </style>
+
+    <style name="LMC.TextAppearance.Medium" parent="TextAppearance.AppCompat.Medium">
+
+    </style>
 
 </resources>

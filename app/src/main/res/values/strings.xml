@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Blockly LMC</string>
+    <string name="label_register">Registers</string>
+    <string name="lmc_step_desc">Step Code</string>
+    <string name="lmc_reset_desc">Reset Emulator</string>
+    <string name="label_memory_address">Memory Address</string>
 </resources>

@@ -6,4 +6,124 @@
     android:layout_height="match_parent"
     tools:context=".EmulatorActivity">
 
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/TextAppearance.AppCompat.Large"
+        android:text="@string/label_register"
+        android:id="@+id/lmc_register_label"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="4dp"/>
+
+    <GridLayout
+        android:id="@+id/lmc_register_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lmc_register_label"
+        android:rowCount="3"
+        android:columnCount="4"
+        android:padding="4dp">
+        <TextView
+            android:layout_columnWeight="1"
+            android:id="@+id/lmc_label_pc"
+            android:text="PC"
+            style="@style/RegisterLabel"/>
+        <TextView
+            android:layout_columnWeight="1"
+            android:id="@+id/lmc_pc"
+            android:text="000"
+            style="@style/RegisterValue"/>
+        <TextView
+            android:layout_columnWeight="1"
+            android:id="@+id/lmc_label_acc"
+            android:text="ACC"
+            style="@style/RegisterLabel"/>
+        <TextView
+            android:layout_columnWeight="1"
+            android:id="@+id/lmc_acc"
+            android:text="000"
+            style="@style/RegisterValue"/>
+        <View android:layout_columnSpan="4"
+            android:layout_width="match_parent"
+            android:background="@color/colorPrimaryDark"
+            android:layout_height="2dp" />
+        <TextView
+            android:layout_columnWeight="1"
+            android:id="@+id/lmc_label_ir"
+            android:text="IR"
+            style="@style/RegisterLabel"/>
+        <TextView
+            android:layout_columnWeight="1"
+            android:id="@+id/lmc_ir"
+            android:text="000"
+            style="@style/RegisterValue"/>
+        <TextView
+            android:layout_columnWeight="1"
+            android:id="@+id/lmc_label_psr"
+            android:text="PSR"
+            style="@style/RegisterLabel"/>
+        <TextView
+            android:layout_columnWeight="1"
+            android:id="@+id/lmc_psr"
+            android:text="000"
+            style="@style/RegisterValue"/>
+    </GridLayout>
+
+    <View
+        android:id="@+id/lmc_register_spacer"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        app:layout_constraintTop_toBottomOf="@+id/lmc_register_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="#64000000"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/lmc_memory_pager"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/lmc_register_spacer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lmc_label_memory_offset"
+            android:text="@string/label_memory_address"
+            style="@style/LMC.TextAppearance.Medium" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageButton
+            android:id="@+id/lmc_step"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/ic_run"
+            android:contentDescription="@string/lmc_step_desc"
+            style="@style/LMC.Button.Colored"/>
+
+        <ImageButton
+            android:id="@+id/lmc_reset"
+            style="@style/LMC.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/lmc_reset_desc"
+            app:srcCompat="@drawable/ic_refresh" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
