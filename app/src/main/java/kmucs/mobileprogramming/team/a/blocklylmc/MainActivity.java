@@ -47,6 +47,6 @@ public class MainActivity extends AppCompatActivity {
 
     @JavascriptInterface
     public void getCode(String code){
-        Toast.makeText(getApplicationContext(), code, Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), String.valueOf(Integer.parseInt(code)), Toast.LENGTH_LONG).show();
     }
 }
