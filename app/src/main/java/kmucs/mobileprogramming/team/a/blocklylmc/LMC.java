@@ -47,11 +47,13 @@ public class LMC extends Thread {
     public boolean getWaitOUT(){ return waitOUT; }
 
     public int getIO(){
+        if(!waitOUT) throw new RuntimeException();
         waitOUT = false;
         return IO;
     }
 
     public void setIO(int IO){
+        if(!waitINP) throw new RuntimeException();
         waitINP = false;
         this.IO = IO;
     }
