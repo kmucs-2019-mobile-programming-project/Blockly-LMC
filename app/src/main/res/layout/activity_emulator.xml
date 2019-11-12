@@ -98,6 +98,12 @@
             android:id="@+id/lmc_label_memory_offset"
             android:text="@string/label_memory_address"
             style="@style/LMC.TextAppearance.Medium" />
+
+        <Spinner
+            android:id="@+id/lmc_memory_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/lmc_pager"/>
     </LinearLayout>
 
     <LinearLayout
