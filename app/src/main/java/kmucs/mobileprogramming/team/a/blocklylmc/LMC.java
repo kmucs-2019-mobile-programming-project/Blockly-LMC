@@ -1,8 +1,8 @@
 package kmucs.mobileprogramming.team.a.blocklylmc;
 
 // Exception class that when little man faced undefine code
-class UndefinedCodeException extends RuntimeException{}
-class MailboxOverException extends RuntimeException{}
+class InvalidInstructionException extends RuntimeException{}
+class OutOfMailboxException extends RuntimeException{}
 
 public class LMC {
     private int numOfMailBox = 100;
@@ -48,11 +48,12 @@ public class LMC {
     }
 
     private void add(int addr){
-        A += mailBoxes[addr];
+        A = (A + mailBoxes[addr]) % valueCapacity;
         setPSR();
     }
+
     private void sub(int addr){
-        A -= mailBoxes[addr];
+        A = (A - mailBoxes[addr]) % valueCapacity;
         setPSR();
     }
 
@@ -60,11 +61,11 @@ public class LMC {
 
     private void sta(int addr){ mailBoxes[addr] = A; }
 
-    private void jmp(int pc){ PC = pc; }
+    private void jmp(int addr){ PC = addr; }
 
-    private void jez(int pc){ if(isZero()) PC = pc; }
+    private void jez(int addr){ if(isZero()) PC = addr; }
 
-    private void jnz(int pc){ if(!isZero()) PC = pc; }
+    private void jnz(int addr){ if(!isZero()) PC = addr; }
 
     private void inp(){
         // in(A);
@@ -78,22 +79,22 @@ public class LMC {
 
 
     public void step(){
-        if(PC == numOfMailBox) throw new MailboxOverException();
+        if(PC == numOfMailBox) throw new OutOfMailboxException();
         IR = mailBoxes[PC];
-        int value = IR % 100;
+        int addr = IR % 100;
 
-        if(InstructionSet.isADD(IR)) add(value);
-        else if(InstructionSet.isSUB(IR)) sub(value);
-        else if(InstructionSet.isSTA(IR)) sta(value);
-        else if(InstructionSet.isLDA(IR)) lda(value);
-        else if(InstructionSet.isJMP(IR)) jmp(value);
-        else if(InstructionSet.isJEZ(IR)) jez(value);
-        else if(InstructionSet.isJNZ(IR)) jnz(value);
+        if(InstructionSet.isADD(IR)) add(addr);
+        else if(InstructionSet.isSUB(IR)) sub(addr);
+        else if(InstructionSet.isSTA(IR)) sta(addr);
+        else if(InstructionSet.isLDA(IR)) lda(addr);
+        else if(InstructionSet.isJMP(IR)) jmp(addr);
+        else if(InstructionSet.isJEZ(IR)) jez(addr);
+        else if(InstructionSet.isJNZ(IR)) jnz(addr);
         else if(InstructionSet.isINP(IR)) inp();
         else if(InstructionSet.isOUT(IR)) out();
         else if(InstructionSet.isCOB(IR)) cob();
         else if(InstructionSet.isNOP(IR)) ;
-        else throw new UndefinedCodeException();
+        else throw new InvalidInstructionException();
 
         PC += 1;
         return;
