@@ -2,18 +2,134 @@
 
 Blockly.LMC = new Blockly.Generator("LMC");
 
-Blockly.Blocks['lda'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("LDA")
-        .appendField(new Blockly.FieldNumber(0, 0, 99), "ADDR");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(230);
-    this.setTooltip("");
-    this.setHelpUrl("");
-  }
+Blockly.Blocks['add'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("ADD")
+            .appendField(new Blockly.FieldNumber(0, 0, 99), "ADDR");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(0);
+    }
 };
+
+Blockly.Blocks['sub'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("SUB")
+            .appendField(new Blockly.FieldNumber(0, 0, 99), "ADDR");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(30);
+    }
+};
+
+Blockly.Blocks['sta'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("STA")
+            .appendField(new Blockly.FieldNumber(0, 0, 99), "ADDR");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(60);
+    }
+};
+
+Blockly.Blocks['lda'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("LDA")
+            .appendField(new Blockly.FieldNumber(0, 0, 99), "ADDR");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(90);
+    }
+};
+
+Blockly.Blocks['jmp'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("JMP")
+            .appendField(new Blockly.FieldNumber(0, 0, 99), "ADDR");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(120);
+    }
+};
+
+Blockly.Blocks['jez'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("JEZ")
+            .appendField(new Blockly.FieldNumber(0, 0, 99), "ADDR");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(150);
+    }
+};
+
+Blockly.Blocks['jnz'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("JNZ")
+            .appendField(new Blockly.FieldNumber(0, 0, 99), "ADDR");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(180);
+    }
+};
+
+Blockly.Blocks['inp'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("INP")
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(210);
+    }
+};
+
+Blockly.Blocks['out'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("OUT")
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(240);
+    }
+};
+
+Blockly.Blocks['cop'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("COB")
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(270);
+    }
+};
+
+Blockly.Blocks['nop'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("NOP")
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(300);
+    }
+};
+
+Blockly.Blocks['dat'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("DAT")
+            .appendField(new Blockly.FieldNumber(0, 0, 999), "ADDR");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(330);
+    }
+};
+
 
 Blockly.LMC['add']=function(block)
 {
