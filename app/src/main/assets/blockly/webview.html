@@ -22,7 +22,18 @@
 <div id="blocklyDiv"></div>
 
 <xml id='toolbox'>
+    <block type="add"></block>
+    <block type="sub"></block>
+    <block type="sta"></block>
     <block type="lda"></block>
+    <block type="jmp"></block>
+    <block type="jez"></block>
+    <block type="jnz"></block>
+    <block type="inp"></block>
+    <block type="out"></block>
+    <block type="cop"></block>
+    <block type="nop"></block>
+    <block type="dat"></block>
 </xml>
 
 <script type="text/javascript">
@@ -31,16 +42,6 @@
         toolbox: document.getElementById('toolbox'),
         zoom: {controls: true},
         trashcan: true});
-
-    function onSelectEvent(event) {
-        console.log(event);
-        if (event.type == Blockly.Events.CHANGE && event.element == 'comment') {
-            console.log('Event!' + 'Id : ' + event.blockId +  'Old : ' + event.oldValue + ', New : ' + event.newValue);
-            workspace.removeChangeListener(onFirstComment);
-        }
-    }
-    workspacePlayground.addChangeListener(onSelectEvent);
-
 </script>
 </body>
 </html>
