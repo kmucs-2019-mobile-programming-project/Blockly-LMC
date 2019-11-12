@@ -1,44 +1,118 @@
+// 20181686 장병준, github : sunjbg
 package kmucs.mobileprogramming.team.a.blocklylmc;
 
 // Exception class that when little man faced undefine code
 class InvalidInstructionException extends RuntimeException{}
 class OutOfMailboxException extends RuntimeException{}
 
-public class LMC {
+public class LMC extends Thread {
     private int numOfMailBox = 100;
     private int valueCapacity = 1000;
     private int[] mailBoxes;
+
+    // Register
     private int PC;
     private int IR;
     private int PSR;
     private int A;
-    private boolean runnable;
+
+    // I/O
+    private int IO;
+
+    // State of current Instruction is INP and wait for user response
+    private boolean waitINP;
+    // State of current Instruction is OUT and wait for user response
+    private boolean waitOUT;
+
+
+    private boolean state;
+    // State of whether little man working now
+    private boolean running;
+
+    private int instructionDelay = 100;
 
     public LMC(){
         mailBoxes = new int[numOfMailBox];
+        resetAll();
     }
 
     public int[] getMailBoxes(){ return mailBoxes; }
+    public void setMailBoxes(int[] mailBoxes){ this.mailBoxes = mailBoxes; }
     public int getPC(){ return PC; }
     public int getIR(){ return IR; }
     public int getPSR(){ return PSR; }
-    public int getA(){ return A; };
+    public int getA(){ return A; }
 
-    public void reset(){
-        for(int i = 0; i < numOfMailBox; i++)
-            mailBoxes[i] = 0;
-        PC = PSR = A = IR = 0;
-        runnable = true;
+    public boolean getWaitINP(){ return waitINP;}
+    public boolean getWaitOUT(){ return waitOUT; }
+
+    public int getIO(){
+        if(!waitOUT) throw new RuntimeException();
+        waitOUT = false;
+        return IO;
     }
 
+    public void setIO(int IO){
+        if(!waitINP) throw new RuntimeException();
+        waitINP = false;
+        this.IO = IO;
+    }
+
+    // Set delay of between instrcution
+    public void setInstructionDelay(int instructionDelay){ this.instructionDelay = instructionDelay; }
+
+    public void execute(){
+        resetRegister();
+        resetFlag();
+        running = true;
+    }
+
+    // public void pause(){}
+
+    public void reset(){
+        resetRegister();
+        resetFlag();
+        running = false;
+    }
+
+    public void resetMailBox(){
+        for(int i = 0; i < numOfMailBox; i++)
+            mailBoxes[i] = 0;
+    }
+
+    public void resetRegister(){
+        PC = PSR = A = IR = IO = 0;
+    }
+
+    public void resetFlag(){
+        running = true;
+        waitINP = waitOUT = false;
+    }
+
+    public void resetAll(){
+        resetMailBox();
+        resetRegister();
+        resetFlag();
+    }
+
+    @Override
     public void run(){
-        // Must be filled
-        while(runnable){
-            step();
+        state = true;
+        while(state){
+            if(running) {
+                try {
+                    step();
+                } catch (Exception e) {
+                    running = false;
+                }
+            }
+            try {
+                sleep(instructionDelay);
+            }catch(Exception e){}
         }
     }
 
-    public void stop(){ runnable = false; }
+    public void halt(){ state = false; }
 
     private boolean isZero(){ return PSR % 10 == 0; }
 
@@ -67,18 +141,15 @@ public class LMC {
 
     private void jnz(int addr){ if(!isZero()) PC = addr; }
 
-    private void inp(){
-        // in(A);
-    }
+    private void inp(){ waitINP = true; }
 
-    private void out(){
-        // out(A)
-    }
+    private void out(){ waitOUT = true; }
 
-    private void cob(){ runnable = false; }
+    private void cob(){ running = false; }
 
 
     public void step(){
+        if(waitINP || waitOUT) return;
         if(PC == numOfMailBox) throw new OutOfMailboxException();
         IR = mailBoxes[PC];
         int addr = IR % 100;
