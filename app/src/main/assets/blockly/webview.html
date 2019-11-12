@@ -31,16 +31,6 @@
         toolbox: document.getElementById('toolbox'),
         zoom: {controls: true},
         trashcan: true});
-
-    function onSelectEvent(event) {
-        console.log(event);
-        if (event.type == Blockly.Events.CHANGE && event.element == 'comment') {
-            console.log('Event!' + 'Id : ' + event.blockId +  'Old : ' + event.oldValue + ', New : ' + event.newValue);
-            workspace.removeChangeListener(onFirstComment);
-        }
-    }
-    workspacePlayground.addChangeListener(onSelectEvent);
-
 </script>
 </body>
 </html>
