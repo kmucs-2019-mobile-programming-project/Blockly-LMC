@@ -48,7 +48,15 @@ public class MainActivity extends AppCompatActivity {
 
     @JavascriptInterface
     public void getCode(String code){
-        Toast.makeText(getApplicationContext(), String.valueOf(Integer.parseInt(code)), Toast.LENGTH_LONG).show();
+        String[] block = code.split("\n");
+        String[] token = block[0].split(" ");
+        int[] mailBoxes = new int[100];
+        for(int i = 0; i < token.length; i++){
+            if(i >= 100) break;
+            mailBoxes[i] = Integer.parseInt(token[i]);
+        }
+        Intent intent = new Intent(this, EmulatorActivity.class);
+        intent.putExtra("mailBoxes", mailBoxes);
         startActivity(new Intent(this, EmulatorActivity.class));
     }
 }

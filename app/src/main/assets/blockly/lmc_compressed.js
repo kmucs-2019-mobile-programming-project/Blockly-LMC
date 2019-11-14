@@ -99,7 +99,7 @@ Blockly.Blocks['out'] = {
     }
 };
 
-Blockly.Blocks['cop'] = {
+Blockly.Blocks['cob'] = {
     init: function () {
         this.appendDummyInput()
             .appendField("COB")
@@ -123,7 +123,7 @@ Blockly.Blocks['dat'] = {
     init: function () {
         this.appendDummyInput()
             .appendField("DAT")
-            .appendField(new Blockly.FieldNumber(0, 0, 999), "ADDR");
+            .appendField(new Blockly.FieldNumber(0, 0, 999), "DATA");
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setColour(330);
@@ -135,6 +135,11 @@ Blockly.LMC['add']=function(block)
 {
     var addr = block.getFieldValue('ADDR');
     var code = "1" + zeropad(addr, 2);
+    var nextBlock = block.nextConnection && block.nextConnection.targetBlock();
+    if(nextBlock != null){
+        var nextCode = Blockly.LMC.blockToCode(nextBlock);
+        code += ' ' + nextCode;
+    }
     return code;
 }
 
@@ -142,6 +147,11 @@ Blockly.LMC['sub']=function(block)
 {
     var addr = block.getFieldValue('ADDR');
     var code = "2" + zeropad(addr, 2);
+    var nextBlock = block.nextConnection && block.nextConnection.targetBlock();
+    if(nextBlock != null){
+        var nextCode = Blockly.LMC.blockToCode(nextBlock);
+        code += ' ' + nextCode;
+    }
     return code;
 }
 
@@ -149,6 +159,11 @@ Blockly.LMC['sta']=function(block)
 {
     var addr = block.getFieldValue('ADDR');
     var code = "3" + zeropad(addr, 2);
+    var nextBlock = block.nextConnection && block.nextConnection.targetBlock();
+    if(nextBlock != null){
+        var nextCode = Blockly.LMC.blockToCode(nextBlock);
+        code += ' ' + nextCode;
+    }
     return code;
 }
 
@@ -156,6 +171,11 @@ Blockly.LMC['lda']=function(block)
 {
     var addr = block.getFieldValue('ADDR');
     var code = "4" + zeropad(addr, 2);
+    var nextBlock = block.nextConnection && block.nextConnection.targetBlock();
+    if(nextBlock != null){
+        var nextCode = Blockly.LMC.blockToCode(nextBlock);
+        code += ' ' + nextCode;
+    }
     return code;
 }
 
@@ -163,6 +183,11 @@ Blockly.LMC['jmp']=function(block)
 {
     var addr = block.getFieldValue('ADDR');
     var code = "5" + zeropad(addr, 2);
+    var nextBlock = block.nextConnection && block.nextConnection.targetBlock();
+    if(nextBlock != null){
+        var nextCode = Blockly.LMC.blockToCode(nextBlock);
+        code += ' ' + nextCode;
+    }
     return code;
 }
 
@@ -170,6 +195,11 @@ Blockly.LMC['jez']=function(block)
 {
     var addr = block.getFieldValue('ADDR');
     var code = "6" + zeropad(addr, 2);
+    var nextBlock = block.nextConnection && block.nextConnection.targetBlock();
+    if(nextBlock != null){
+        var nextCode = Blockly.LMC.blockToCode(nextBlock);
+        code += ' ' + nextCode;
+    }
     return code;
 }
 
@@ -177,24 +207,55 @@ Blockly.LMC['jnz']=function(block)
 {
     var addr = block.getFieldValue('ADDR');
     var code = "7" + zeropad(addr, 2);
+    var nextBlock = block.nextConnection && block.nextConnection.targetBlock();
+    if(nextBlock != null){
+        var nextCode = Blockly.LMC.blockToCode(nextBlock);
+        code += ' ' + nextCode;
+    }
     return code;
 }
 
 Blockly.LMC['inp']=function(block)
 {
     var code = "801";
+    var nextBlock = block.nextConnection && block.nextConnection.targetBlock();
+    if(nextBlock != null){
+        var nextCode = Blockly.LMC.blockToCode(nextBlock);
+        code += ' ' + nextCode;
+    }
     return code;
 }
 
 Blockly.LMC['out']=function(block)
 {
     var code = "802";
+    var nextBlock = block.nextConnection && block.nextConnection.targetBlock();
+    if(nextBlock != null){
+        var nextCode = Blockly.LMC.blockToCode(nextBlock);
+        code += ' ' + nextCode;
+    }
     return code;
 }
 
 Blockly.LMC['cob']=function(block)
 {
     var code = "900";
+    var nextBlock = block.nextConnection && block.nextConnection.targetBlock();
+    if(nextBlock != null){
+        var nextCode = Blockly.LMC.blockToCode(nextBlock);
+        code += ' ' + nextCode;
+    }
+    return code;
+}
+
+Blockly.LMC['nop']=function(block)
+{
+    var code = "000";
+    var nextBlock = block.nextConnection && block.nextConnection.targetBlock();
+    if(nextBlock != null){
+        var nextCode = Blockly.LMC.blockToCode(nextBlock);
+        code += ' ' + nextCode;
+    }
     return code;
 }
 
@@ -202,6 +263,11 @@ Blockly.LMC['dat']=function(block)
 {
     var addr = block.getFieldValue('DATA');
     var code = zeropad(addr, 3);
+    var nextBlock = block.nextConnection && block.nextConnection.targetBlock();
+    if(nextBlock != null){
+        var nextCode = Blockly.LMC.blockToCode(nextBlock);
+        code += ' ' + nextCode;
+    }
     return code;
 }
 
