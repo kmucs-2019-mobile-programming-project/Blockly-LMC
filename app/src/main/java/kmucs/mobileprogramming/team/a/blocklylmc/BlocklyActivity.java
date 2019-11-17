@@ -52,6 +52,6 @@ public class BlocklyActivity extends AppCompatActivity {
         }
         Intent intent = new Intent(this, EmulatorActivity.class);
         intent.putExtra("mailBoxes", mailBoxes);
-        startActivity(new Intent(this, EmulatorActivity.class));
+        startActivity(intent);
     }
 }
