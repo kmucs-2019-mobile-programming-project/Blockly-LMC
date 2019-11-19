@@ -1,9 +1,9 @@
 package kmucs.mobileprogramming.team.a.blocklylmc;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,6 +15,17 @@ public class ProblemListActivity extends AppCompatActivity implements View.OnCli
 
         for(int i=0; i<btn_problem.length; i++){
             findViewById(btn_problem[i]).setOnClickListener(this);
+        }
+
+        SharedPreferences sharedPreferences = getSharedPreferences("Tutorial_Info", MODE_PRIVATE);
+        boolean isFirst = sharedPreferences.getBoolean("ProblemListActivity", false);
+        if(!isFirst) {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("ProblemListActivity", true);
+            editor.apply();
+            Intent intent = new Intent(this, TutorialActivity.class);
+            intent.putExtra("layout_idx", 0);
+            startActivity(intent);
         }
     }
 
