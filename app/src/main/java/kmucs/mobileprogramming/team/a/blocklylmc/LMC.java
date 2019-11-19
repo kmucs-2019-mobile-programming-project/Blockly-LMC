@@ -59,6 +59,7 @@ public class LMC extends Thread {
         if(!waitINP) throw new RuntimeException();
         waitINP = false;
         this.IO = IO;
+        A = IO;
     }
 
     // Set delay of between instrcution
@@ -146,7 +147,10 @@ public class LMC extends Thread {
 
     private void inp(){ waitINP = true; }
 
-    private void out(){ waitOUT = true; }
+    private void out(){
+        IO = A;
+        waitOUT = true;
+    }
 
     private void cob(){ running = false; }
 
