@@ -30,6 +30,7 @@ public class LMC extends Thread {
     private boolean state;
     // State of whether little man working now
     private boolean running;
+    private boolean COB;
 
     private int instructionDelay = 100;
 
@@ -66,8 +67,6 @@ public class LMC extends Thread {
     public void setInstructionDelay(int instructionDelay){ this.instructionDelay = instructionDelay; }
 
     public void execute(){
-        resetRegister();
-        resetFlag();
         running = true;
     }
 
@@ -90,7 +89,7 @@ public class LMC extends Thread {
 
     public void resetFlag(){
         running = true;
-        waitINP = waitOUT = false;
+        waitINP = waitOUT = COB = false;
     }
 
     public void resetAll(){
@@ -101,7 +100,7 @@ public class LMC extends Thread {
 
     @Override
     public void run(){
-        state = true;
+        reset();
         while(state){
             if(running) {
                 try {
@@ -152,11 +151,11 @@ public class LMC extends Thread {
         waitOUT = true;
     }
 
-    private void cob(){ running = false; }
+    private void cob(){ running = COB = false; }
 
 
     public void step(){
-        if(!running) return;
+        if(COB) return;
         if(waitINP || waitOUT) return;
         if(PC == numOfMailBox) throw new OutOfMailboxException();
         IR = mailBoxes[PC];
