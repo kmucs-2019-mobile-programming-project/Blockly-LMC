@@ -54,5 +54,22 @@ public enum InstructionSet{
         return DAT;
     }
 
+    public static String disassemble(int IR){
+        InstructionSet instruction = getInstruction(IR);
+        String str = new String(instruction.mnemonic);
+        switch (instruction){
+            case INP:
+            case OUT:
+            case COB:
+            case NOP:
+            case DAT:
+                break;
+            default:
+                str += Integer.toString(IR % 100);
+                break;
+        }
+        return str;
+    }
+
     public int getCycle() { return cycle; }
 }
