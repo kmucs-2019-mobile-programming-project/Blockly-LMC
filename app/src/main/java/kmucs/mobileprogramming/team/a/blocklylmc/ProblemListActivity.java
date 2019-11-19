@@ -20,8 +20,18 @@ public class ProblemListActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onClick(View view) {
+        int lv = -1;
+        switch (view.getId()){
+            case R.id.btn_lv1:
+                lv = 1;
+                break;
+            case R.id.btn_lv2:
+                lv = 2;
+                break;
+        }
+
         Intent intent = new Intent(this, BlocklyActivity.class);
-        intent.putExtra("id", view.getId());
+        intent.putExtra("lv", lv);
         startActivity(intent);
     }
 }
