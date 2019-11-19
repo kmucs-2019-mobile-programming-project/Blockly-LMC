@@ -65,7 +65,7 @@ public enum InstructionSet{
             case DAT:
                 break;
             default:
-                str += Integer.toString(IR % 100);
+                str += " " + Integer.toString(IR % 100);
                 break;
         }
         return str;
