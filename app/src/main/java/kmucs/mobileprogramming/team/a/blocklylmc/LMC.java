@@ -151,7 +151,10 @@ public class LMC extends Thread {
         waitOUT = true;
     }
 
-    private void cob(){ running = COB = false; }
+    private void cob(){
+        running = false;
+        COB = true;
+    }
 
 
     public void step(){
