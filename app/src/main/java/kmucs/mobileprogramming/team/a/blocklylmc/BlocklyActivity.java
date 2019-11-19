@@ -44,7 +44,7 @@ public class BlocklyActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         // TODO: Problem Viewer Activity에 lv값 넣어서 호출하기
                         Toast.makeText(getApplicationContext(), String.valueOf(lv), Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(BlocklyActivity.this, TutorialActivity.class);
+                        Intent intent = new Intent(BlocklyActivity.this, ProblemViewerActivity.class);
                         startActivity(intent);
                     }
                 });
