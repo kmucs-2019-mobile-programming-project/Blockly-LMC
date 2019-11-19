@@ -17,13 +17,13 @@ public class ProblemViewerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_problem_viewer);
 
         Intent args = getIntent();
-        String url = args.getExtras().getString("problemUrl", "");
+        int level = args.getExtras().getInt("lv", 1);
 
         problemView = findViewById(R.id.problem_webview);
         problemView.setWebChromeClient(new WebChromeClient());
         WebSettings webSettings = problemView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-        problemView.loadUrl(url);
+        problemView.loadUrl("file://android_asset/problem/problem_"+level+".html");
 
     }
 }
