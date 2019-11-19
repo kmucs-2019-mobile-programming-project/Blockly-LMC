@@ -23,7 +23,7 @@ public class ProblemViewerActivity extends AppCompatActivity {
         problemView.setWebChromeClient(new WebChromeClient());
         WebSettings webSettings = problemView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-        problemView.loadUrl("file://android_asset/problem/problem_"+level+".html");
+        problemView.loadUrl("file:///android_asset/problem/problem_"+level+".html");
 
     }
 }
