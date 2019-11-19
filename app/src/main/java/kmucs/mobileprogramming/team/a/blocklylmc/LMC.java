@@ -10,6 +10,8 @@ public class LMC extends Thread {
     private int valueCapacity = 1000;
     private int[] mailBoxes;
 
+    private int CYCLE;
+
     // Register
     private int PC;
     private int IR;
@@ -36,6 +38,7 @@ public class LMC extends Thread {
         resetAll();
     }
 
+    public int getCYCLE(){ return CYCLE; }
     public int[] getMailBoxes(){ return mailBoxes; }
     public void setMailBoxes(int[] mailBoxes){ this.mailBoxes = mailBoxes; }
     public int getPC(){ return PC; }
@@ -81,7 +84,7 @@ public class LMC extends Thread {
     }
 
     public void resetRegister(){
-        PC = PSR = A = IR = IO = 0;
+        PC = PSR = A = IR = IO = CYCLE = 0;
     }
 
     public void resetFlag(){
@@ -153,6 +156,7 @@ public class LMC extends Thread {
         if(PC == numOfMailBox) throw new OutOfMailboxException();
         IR = mailBoxes[PC];
         int addr = IR % 100;
+        InstructionSet instruction = InstructionSet.getInstruction(IR);
 
         if(InstructionSet.isADD(IR)) add(addr);
         else if(InstructionSet.isSUB(IR)) sub(addr);
@@ -168,6 +172,7 @@ public class LMC extends Thread {
         else throw new InvalidInstructionException();
 
         PC += 1;
+        CYCLE += instruction.getCycle();
         return;
     }
 }
