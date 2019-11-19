@@ -7,121 +7,157 @@
     tools:context=".EmulatorActivity">
 
     <TextView
+        android:id="@+id/lmc_register_label"
+        style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        style="@style/TextAppearance.AppCompat.Large"
+        android:padding="4dp"
         android:text="@string/label_register"
-        android:id="@+id/lmc_register_label"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:padding="4dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <GridLayout
         android:id="@+id/lmc_register_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:columnCount="4"
+        android:padding="4dp"
+        android:rowCount="3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lmc_register_label"
-        android:rowCount="3"
-        android:columnCount="4"
-        android:padding="4dp">
+        app:layout_constraintTop_toBottomOf="@+id/lmc_register_label">
+
         <TextView
-            android:layout_columnWeight="1"
             android:id="@+id/lmc_label_pc"
-            android:text="PC"
-            style="@style/RegisterLabel"/>
-        <TextView
+            style="@style/RegisterLabel"
             android:layout_columnWeight="1"
+            android:layout_width="0dp"
+            android:text="PC" />
+
+        <TextView
             android:id="@+id/lmc_pc"
-            android:text="000"
-            style="@style/RegisterValue"/>
-        <TextView
+            style="@style/RegisterValue"
             android:layout_columnWeight="1"
+            android:layout_width="0dp"
+            android:text="000" />
+
+        <TextView
             android:id="@+id/lmc_label_acc"
-            android:text="ACC"
-            style="@style/RegisterLabel"/>
-        <TextView
+            style="@style/RegisterLabel"
             android:layout_columnWeight="1"
+            android:layout_width="0dp"
+            android:text="ACC" />
+
+        <TextView
             android:id="@+id/lmc_acc"
-            android:text="000"
-            style="@style/RegisterValue"/>
-        <View android:layout_columnSpan="4"
+            style="@style/RegisterValue"
+            android:layout_columnWeight="1"
+            android:layout_width="0dp"
+            android:text="000" />
+
+        <View
             android:layout_width="match_parent"
-            android:background="@color/colorPrimaryDark"
-            android:layout_height="2dp" />
+            android:layout_height="2dp"
+            android:layout_columnSpan="4"
+            android:background="@color/colorPrimaryDark" />
+
         <TextView
-            android:layout_columnWeight="1"
             android:id="@+id/lmc_label_ir"
-            android:text="IR"
-            style="@style/RegisterLabel"/>
-        <TextView
+            style="@style/RegisterLabel"
             android:layout_columnWeight="1"
+            android:layout_width="0dp"
+            android:text="IR" />
+
+        <TextView
             android:id="@+id/lmc_ir"
-            android:text="000"
-            style="@style/RegisterValue"/>
-        <TextView
+            style="@style/RegisterValue"
             android:layout_columnWeight="1"
+            android:layout_width="0dp"
+            android:text="000" />
+
+        <TextView
             android:id="@+id/lmc_label_psr"
-            android:text="PSR"
-            style="@style/RegisterLabel"/>
-        <TextView
+            style="@style/RegisterLabel"
             android:layout_columnWeight="1"
+            android:layout_width="0dp"
+            android:text="PSR" />
+
+        <TextView
             android:id="@+id/lmc_psr"
-            android:text="000"
-            style="@style/RegisterValue"/>
+            style="@style/RegisterValue"
+            android:layout_columnWeight="1"
+            android:layout_width="0dp"
+            android:text="000" />
     </GridLayout>
 
     <View
         android:id="@+id/lmc_register_spacer"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        app:layout_constraintTop_toBottomOf="@+id/lmc_register_view"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:background="#64000000"
         android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp" />
+        android:layout_marginBottom="4dp"
+        android:background="#64000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lmc_register_view" />
 
     <LinearLayout
+        android:id="@+id/lmc_memory_pager"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:id="@+id/lmc_memory_pager"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/lmc_register_spacer"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/lmc_register_spacer">
+
         <TextView
+            android:id="@+id/lmc_label_memory_offset"
+            style="@style/LMC.TextAppearance.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/lmc_label_memory_offset"
-            android:text="@string/label_memory_address"
-            style="@style/LMC.TextAppearance.Medium" />
+            android:text="@string/label_memory_address" />
 
         <Spinner
             android:id="@+id/lmc_memory_spinner"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:entries="@array/lmc_pager"/>
+            android:layout_weight="1"
+            android:entries="@array/lmc_pager" />
+
+        <Button
+            android:id="@+id/lmc_memory_pager_prev"
+            style="@style/Widget.AppCompat.Button.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lmc_pager_prev" />
+
+        <Button
+            android:id="@+id/lmc_memory_pager_next"
+            style="@style/Widget.AppCompat.Button.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lmc_pager_next" />
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="64dp"
         android:orientation="horizontal"
+        android:id="@+id/lmc_control"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageButton
             android:id="@+id/lmc_step"
+            style="@style/LMC.Button.Colored"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            app:srcCompat="@drawable/ic_run"
             android:contentDescription="@string/lmc_step_desc"
-            style="@style/LMC.Button.Colored"/>
+            app:srcCompat="@drawable/ic_run" />
 
         <ImageButton
             android:id="@+id/lmc_reset"
@@ -131,5 +167,22 @@
             android:contentDescription="@string/lmc_reset_desc"
             app:srcCompat="@drawable/ic_refresh" />
     </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/lmc_list_scroll_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lmc_memory_pager"
+        app:layout_constraintBottom_toTopOf="@id/lmc_control">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/lmc_memory_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

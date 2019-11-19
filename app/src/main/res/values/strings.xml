@@ -4,6 +4,8 @@
     <string name="lmc_step_desc">Step Code</string>
     <string name="lmc_reset_desc">Reset Emulator</string>
     <string name="label_memory_address">Memory Address</string>
+    <string name="lmc_pager_prev"><![CDATA[<]]></string>
+    <string name="lmc_pager_next"><![CDATA[>]]></string>
     <string-array name="lmc_pager">
         <item>0</item>
         <item>10</item>
