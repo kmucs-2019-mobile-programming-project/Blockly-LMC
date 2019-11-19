@@ -158,6 +158,9 @@ public class LMC extends Thread {
         int addr = IR % 100;
         InstructionSet instruction = InstructionSet.getInstruction(IR);
 
+        PC += 1;
+        CYCLE += instruction.getCycle();
+
         if(InstructionSet.isADD(IR)) add(addr);
         else if(InstructionSet.isSUB(IR)) sub(addr);
         else if(InstructionSet.isSTA(IR)) sta(addr);
@@ -170,9 +173,6 @@ public class LMC extends Thread {
         else if(InstructionSet.isCOB(IR)) cob();
         else if(InstructionSet.isNOP(IR)) ;
         else throw new InvalidInstructionException();
-
-        PC += 1;
-        CYCLE += instruction.getCycle();
         return;
     }
 }
