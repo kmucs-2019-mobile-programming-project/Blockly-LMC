@@ -10,6 +10,9 @@ import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class BlocklyActivity extends AppCompatActivity {
     private final Handler handler = new Handler();
@@ -19,10 +22,31 @@ public class BlocklyActivity extends AppCompatActivity {
 
     Button btn_run;
 
+    FloatingActionButton fab;
+    int lv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blockly);
+
+        fab = findViewById(R.id.floatingActionButton);
+        fab.setVisibility(View.GONE);
+
+        Bundle bundle = getIntent().getExtras();
+        if(bundle != null){
+            lv = bundle.getInt("lv", -1);
+            if(lv != -1) {
+                fab.setVisibility(View.VISIBLE);
+                fab.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // TODO: Problem Viewer Activity에 lv값 넣어서 호출하기
+                        Toast.makeText(getApplicationContext(), String.valueOf(lv), Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        }
 
         webView = findViewById(R.id.webview);
 //        webView.setWebViewClient(new WebViewClient());
