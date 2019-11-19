@@ -3,6 +3,7 @@ package kmucs.mobileprogramming.team.a.blocklylmc;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -43,6 +44,8 @@ public class BlocklyActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         // TODO: Problem Viewer Activity에 lv값 넣어서 호출하기
                         Toast.makeText(getApplicationContext(), String.valueOf(lv), Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(BlocklyActivity.this, TutorialActivity.class);
+                        startActivity(intent);
                     }
                 });
             }
@@ -63,6 +66,17 @@ public class BlocklyActivity extends AppCompatActivity {
                 webView.loadUrl("javascript:generateCode()");
             }
         });
+
+        SharedPreferences sharedPreferences = getSharedPreferences("Tutorial_Info", MODE_PRIVATE);
+        boolean isFirst = sharedPreferences.getBoolean("BlocklyActivity", false);
+        if(!isFirst) {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("BlocklyActivity", true);
+            editor.apply();
+            Intent intent = new Intent(this, TutorialActivity.class);
+            intent.putExtra("layout_idx", 1);
+            startActivity(intent);
+        }
     }
 
     @JavascriptInterface
