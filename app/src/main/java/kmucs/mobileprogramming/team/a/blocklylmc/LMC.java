@@ -156,6 +156,7 @@ public class LMC extends Thread {
 
 
     public void step(){
+        if(!running) return;
         if(waitINP || waitOUT) return;
         if(PC == numOfMailBox) throw new OutOfMailboxException();
         IR = mailBoxes[PC];
