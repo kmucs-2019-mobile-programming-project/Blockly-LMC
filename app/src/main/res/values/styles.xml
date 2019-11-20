@@ -37,4 +37,17 @@
 
     </style>
 
+    <style name="ResultDialog.TextAppearance.Result" parent="TextAppearance.AppCompat.Display3">
+        <item name="android:textAlignment">center</item>
+    </style>
+    <style name="ResultDialog.TextAppearance.Result.Success" parent="ResultDialog.TextAppearance.Result">
+        <item name="android:textColor">@color/resultSuccess</item>
+    </style>
+    <style name="ResultDialog.TextAppearance.Result.Failed" parent="ResultDialog.TextAppearance.Result">
+        <item name="android:textColor">@color/resultFailed</item>
+    </style>
+    <style name="ResultDialog.TextAppearance.Record.MyRecord" parent="TextAppearance.AppCompat.Medium">
+        <item name="background">@color/resultMyRecordBackground</item>
+    </style>
+
 </resources>

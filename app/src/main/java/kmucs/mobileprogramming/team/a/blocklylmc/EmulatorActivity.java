@@ -1,12 +1,9 @@
 package kmucs.mobileprogramming.team.a.blocklylmc;
 
 import android.content.DialogInterface;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.NumberPicker;
@@ -19,12 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import kmucs.mobileprogramming.team.a.blocklylmc.Dialog.NumberPickerDialog;
-import kmucs.mobileprogramming.team.a.blocklylmc.MemoryRecycler.MemoryRecyclerAdapter;
+import kmucs.mobileprogramming.team.a.blocklylmc.Recycler.MemoryRecyclerAdapter;
 
 public class EmulatorActivity extends AppCompatActivity implements View.OnClickListener, NumberPicker.OnValueChangeListener {
 

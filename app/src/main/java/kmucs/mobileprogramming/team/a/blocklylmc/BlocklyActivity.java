@@ -1,7 +1,12 @@
 package kmucs.mobileprogramming.team.a.blocklylmc;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,19 +20,24 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class BlocklyActivity extends AppCompatActivity {
+import javax.xml.transform.Result;
+
+import kmucs.mobileprogramming.team.a.blocklylmc.Dialog.ResultDialog;
+
+public class BlocklyActivity extends AppCompatActivity implements Dialog.OnClickListener, View.OnClickListener {
     private final Handler handler = new Handler();
 
     WebView webView;
     WebSettings webSettings;
 
     Button btn_run;
+    Button btn_submit;
 
     FloatingActionButton fab;
     int lv;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blockly);
 
@@ -67,6 +77,9 @@ public class BlocklyActivity extends AppCompatActivity {
             }
         });
 
+        btn_submit = findViewById(R.id.btn_submit);
+        btn_submit.setOnClickListener(this);
+
         SharedPreferences sharedPreferences = getSharedPreferences("Tutorial_Info", MODE_PRIVATE);
         boolean isFirst = sharedPreferences.getBoolean("BlocklyActivity", false);
         if(!isFirst) {
@@ -91,5 +104,41 @@ public class BlocklyActivity extends AppCompatActivity {
         Intent intent = new Intent(this, EmulatorActivity.class);
         intent.putExtra("mailBoxes", mailBoxes);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == -1)
+            finish();
+    }
+
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+        switch(which){
+            case Dialog.BUTTON_NEUTRAL:
+                finish();
+                break;
+            case Dialog.BUTTON_POSITIVE:
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        int viewId = v.getId();
+        if(viewId == R.id.btn_submit){
+            Bundle dialogBundle = new Bundle();
+            dialogBundle.putString("username", "v");
+            dialogBundle.putInt("lv",lv);
+
+            ResultDialog resultdialog = new ResultDialog();
+            resultdialog.setOnClickListener(this);
+            resultdialog.setTargetFragment(getSupportFragmentManager().getFragment(new Bundle(),"blocklyActivity"),0);
+            resultdialog.setArguments(dialogBundle);
+            resultdialog.show(getSupportFragmentManager(), "result dialog");
+
+        }
     }
 }

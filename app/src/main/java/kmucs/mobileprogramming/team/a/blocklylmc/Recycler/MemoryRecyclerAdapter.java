@@ -1,4 +1,4 @@
-package kmucs.mobileprogramming.team.a.blocklylmc.MemoryRecycler;
+package kmucs.mobileprogramming.team.a.blocklylmc.Recycler;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,11 +7,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.ArrayList;
 
 import kmucs.mobileprogramming.team.a.blocklylmc.InstructionSet;
 import kmucs.mobileprogramming.team.a.blocklylmc.R;
