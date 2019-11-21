@@ -129,11 +129,11 @@ public class LMC extends Thread {
 
     public boolean isErrorOccurred() { return errorOccurred; }
 
-    private boolean isZero(){ return PSR % 10 == 0; }
+    private boolean isZero(){ return PSR % 10 == 1; }
 
     private void setPSR() {
-        if(A > 0) PSR = 1;
-        else PSR = 0;
+        if(A > 0) PSR = 0;
+        else PSR = 1;
     }
 
     private void add(int addr){
