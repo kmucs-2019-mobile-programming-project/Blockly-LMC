@@ -76,7 +76,7 @@ public class EmulatorActivity extends AppCompatActivity implements View.OnClickL
         ((MemoryRecyclerAdapter)memoryRecyclerView.getAdapter()).setLmcData(machine.getMailBoxes());
         memoryRecyclerView.getAdapter().notifyDataSetChanged();
         ((MemoryRecyclerAdapter) memoryRecyclerView.getAdapter()).setCurrentRow(position);
-        ((LinearLayoutManager) memoryRecyclerView.getLayoutManager()).scrollToPositionWithOffset(position,50);
+        ((LinearLayoutManager) memoryRecyclerView.getLayoutManager()).scrollToPositionWithOffset(position,memoryRecyclerView.getChildAt(0).getHeight());
         // memoryRecyclerView.scrollToPosition(position);
 
     }
