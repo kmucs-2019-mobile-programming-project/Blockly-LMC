@@ -6,17 +6,22 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+import androidx.annotation.StyleRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import kmucs.mobileprogramming.team.a.blocklylmc.JudgeSystem;
 import kmucs.mobileprogramming.team.a.blocklylmc.LeaderBoardItem;
 import kmucs.mobileprogramming.team.a.blocklylmc.R;
 import kmucs.mobileprogramming.team.a.blocklylmc.Recycler.ResultDialogLeaderboardAdapter;
@@ -29,13 +34,17 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ResultDialog extends DialogFragment implements Callback<ResponseData> {
+public class ResultDialog extends DialogFragment implements Callback<ResponseData>, JudgeSystem.OnJudgeFinishedListener {
 
     private RecyclerView leaderboardRecycler;
     private TextView result;
+    private ProgressBar loadingSpinner;
 
     private int level;
     private String username;
+    private int[] mailBoxes;
+
+    private JudgeSystem judgeSystem;
 
     private LeaderBoardItem[] leaderboard;
 
@@ -55,36 +64,27 @@ public class ResultDialog extends DialogFragment implements Callback<ResponseDat
         level = 1;
         leaderboard = null;
         username = "";
+        mailBoxes = null;
 
         if (bundle != null) {
             level = bundle.getInt("lv", 1);
             username = bundle.getString("username", "");
+            mailBoxes = bundle.getIntArray("mailBoxes");
         }
+
+        judgeSystem = new JudgeSystem(level, mailBoxes);
+        judgeSystem.setOnJudgeFinishedListener(this);
 
         View resultLayout = getActivity().getLayoutInflater().inflate(R.layout.dialog_result, null);
-        try {
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(RetrofitService.requestBaseURL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-
-            RetrofitService retrofitService = retrofit.create(RetrofitService.class);
-
-            Call<ResponseData> call = retrofitService.leaderboard(level);
-            call.enqueue(this);
-            //call.execute();
-        } catch (Exception e) {
-            Toast.makeText(getContext(), "leaderboard error", Toast.LENGTH_SHORT).show();
-        }
 
         result = resultLayout.findViewById(R.id.result_output);
-        result.setText("Success");
-        result.setTextAppearance(R.style.ResultDialog_TextAppearance_Result_Success);
-
+        loadingSpinner = resultLayout.findViewById(R.id.result_loading_spinner);
         leaderboardRecycler = resultLayout.findViewById(R.id.result_recycler_leaderboard);
-        ViewGroup.LayoutParams layout = leaderboardRecycler.getLayoutParams();
-        layout.height = (int)(256 * getContext().getResources().getDisplayMetrics().density);
-        leaderboardRecycler.setLayoutParams(layout);
+
+        showProgress();
+
+        judgeSystem.run();
+
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Result")
                 .setView(resultLayout)
@@ -103,16 +103,51 @@ public class ResultDialog extends DialogFragment implements Callback<ResponseDat
         return dialog;
     }
 
+    void showProgress(){
+        result.setVisibility(View.GONE);
+        leaderboardRecycler.setVisibility(View.GONE);
+        loadingSpinner.setVisibility(View.VISIBLE);
+    }
+
+    void hideProgress(){
+        result.setVisibility(View.VISIBLE);
+        leaderboardRecycler.setVisibility(View.VISIBLE);
+        loadingSpinner.setVisibility(View.GONE);
+    }
+
     @Override
     public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {
         ResponseData responseData = response.body();
         leaderboard = responseData.getLeaderboard();
         ((ResultDialogLeaderboardAdapter)leaderboardRecycler.getAdapter()).setLeaderBoardItem(leaderboard);
         leaderboardRecycler.getAdapter().notifyDataSetChanged();
+        hideProgress();
 }
 
     @Override
     public void onFailure(Call<ResponseData> call, Throwable t) {
 
+    }
+
+    @Override
+    public void onJudgeFinished(int level, int cycle, boolean success) {
+        @StringRes int resultStringId = (success?R.string.dialog_result_success:R.string.dialog_result_failed);
+        @StyleRes int resultStyleId = (success?R.style.ResultDialog_TextAppearance_Result_Success:R.style.ResultDialog_TextAppearance_Result_Failed);
+        result.setText(resultStringId);
+        result.setTextAppearance(resultStyleId);
+        try {
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(RetrofitService.requestBaseURL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+            RetrofitService retrofitService = retrofit.create(RetrofitService.class);
+
+            Call<ResponseData> call = retrofitService.record(username, level, cycle);
+            call.enqueue(this);
+            //call.execute();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
