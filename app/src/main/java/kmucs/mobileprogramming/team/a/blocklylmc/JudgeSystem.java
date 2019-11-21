@@ -51,7 +51,7 @@ public class JudgeSystem extends Thread {
     public void run() {
         LMC lmc = new LMC();
         lmc.setMailBoxes(mailBoxes);
-        lmc.run();
+        lmc.start();
         int inputIndex = 0, outputIndex = 0;
         for(int testcase = 0; testcase < inputData.length; testcase++) {
             int time = 0;
