@@ -144,7 +144,7 @@ public class LMC extends Thread {
     }
 
     private void sub(int addr){
-        A = (A - mailBoxes[addr]) % valueCapacity;
+        A = (A - mailBoxes[addr] + valueCapacity) % valueCapacity;
         setPSR();
     }
 
