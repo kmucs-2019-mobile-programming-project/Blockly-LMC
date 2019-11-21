@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 class WrongAnswerException extends RuntimeException{}
 class TimeLimitExceededException extends  RuntimeException{}
+class JudgeFinishedListenerNotFoundException extends RuntimeException{}
 
 public class JudgeSystem extends Thread {
     private int judgeLevel;
@@ -17,7 +18,9 @@ public class JudgeSystem extends Thread {
     private int cycle;
     private boolean correctAnswer;
 
-    JudgeSystem(int judgeLevel, int[] mailBoxes){
+    private OnJudgeFinishedListener mListener;
+
+    public JudgeSystem(int judgeLevel, int[] mailBoxes){
         this.judgeLevel = judgeLevel;
         this.mailBoxes = mailBoxes;
 
@@ -76,6 +79,9 @@ public class JudgeSystem extends Thread {
             // cycle is record of last testcase
             cycle = lmc.getCYCLE();
         }
+        if(mListener == null)
+            throw new JudgeFinishedListenerNotFoundException();
+        mListener.onJudgeFinished(judgeLevel, cycle, isCorrectAnswer());
     }
 
     public boolean isCorrectAnswer(){ return correctAnswer; }
@@ -191,4 +197,14 @@ public class JudgeSystem extends Thread {
         inputData[level] = input;
         outputData[level] = output;
     }
+
+    public interface OnJudgeFinishedListener {
+        void onJudgeFinished(int level, int cycle, boolean success);
+    }
+
+    public void setOnJudgeFinishedListener(OnJudgeFinishedListener listener){
+        mListener = listener;
+    }
+
 }
+
