@@ -18,4 +18,6 @@
         <item>80</item>
         <item>90</item>
     </string-array>
+    <string name="dialog_result_success">Success</string>
+    <string name="dialog_result_failed">Failed</string>
 </resources>

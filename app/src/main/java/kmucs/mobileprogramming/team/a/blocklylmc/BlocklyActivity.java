@@ -36,6 +36,9 @@ public class BlocklyActivity extends AppCompatActivity implements Dialog.OnClick
     FloatingActionButton fab;
     int lv;
 
+    int[] mailBoxes;
+    boolean isSubmit;
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +76,7 @@ public class BlocklyActivity extends AppCompatActivity implements Dialog.OnClick
         btn_run.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                isSubmit=false;
                 webView.loadUrl("javascript:generateCode()");
             }
         });
@@ -101,9 +105,14 @@ public class BlocklyActivity extends AppCompatActivity implements Dialog.OnClick
             if(i >= 100) break;
             mailBoxes[i] = Integer.parseInt(token[i]);
         }
-        Intent intent = new Intent(this, EmulatorActivity.class);
-        intent.putExtra("mailBoxes", mailBoxes);
-        startActivity(intent);
+        this.mailBoxes = mailBoxes;
+        if(isSubmit){
+            submit();
+        } else {
+            Intent intent = new Intent(getApplicationContext(), EmulatorActivity.class);
+            intent.putExtra("mailBoxes", mailBoxes);
+            startActivity(intent);
+        }
     }
 
     @Override
@@ -125,20 +134,24 @@ public class BlocklyActivity extends AppCompatActivity implements Dialog.OnClick
         }
     }
 
+    public void submit(){
+        Bundle dialogBundle = new Bundle();
+        dialogBundle.putString("username", "v");
+        dialogBundle.putInt("lv",lv);
+        dialogBundle.putIntArray("mailBoxes", mailBoxes);
+        ResultDialog resultdialog = new ResultDialog();
+        resultdialog.setOnClickListener(this);
+        resultdialog.setTargetFragment(getSupportFragmentManager().getFragment(new Bundle(),"blocklyActivity"),0);
+        resultdialog.setArguments(dialogBundle);
+        resultdialog.show(getSupportFragmentManager(), "result dialog");
+    }
+
     @Override
     public void onClick(View v) {
         int viewId = v.getId();
         if(viewId == R.id.btn_submit){
-            Bundle dialogBundle = new Bundle();
-            dialogBundle.putString("username", "v");
-            dialogBundle.putInt("lv",lv);
-
-            ResultDialog resultdialog = new ResultDialog();
-            resultdialog.setOnClickListener(this);
-            resultdialog.setTargetFragment(getSupportFragmentManager().getFragment(new Bundle(),"blocklyActivity"),0);
-            resultdialog.setArguments(dialogBundle);
-            resultdialog.show(getSupportFragmentManager(), "result dialog");
-
+            isSubmit=true;
+            webView.loadUrl("javascript:generateCode()");
         }
     }
 }

@@ -8,4 +8,5 @@
     <color name="resultMyRecordBackground">#F9FE67</color>
     <color name="resultRecordOdd">#10000000</color>
     <color name="resultRecordEven">@android:color/transparent</color>
+    <color name="memoryCellCurrent">#32000000</color>
 </resources>
