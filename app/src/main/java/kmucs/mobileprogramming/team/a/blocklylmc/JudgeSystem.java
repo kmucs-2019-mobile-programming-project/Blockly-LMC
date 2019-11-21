@@ -11,9 +11,9 @@ public class JudgeSystem extends Thread {
     private int judgeLevel;
     private int[] mailBoxes;
     private int totalLevel;
-    private int[] timeLimit;
-    private int[][][] inputData;
-    private int[][][] outputData;
+    private int timeLimit;
+    private int[][] inputData;
+    private int[][] outputData;
 
     private int cycle;
     private boolean correctAnswer;
@@ -25,16 +25,26 @@ public class JudgeSystem extends Thread {
         this.mailBoxes = mailBoxes;
 
         correctAnswer = true;
-        totalLevel = 5;
-        timeLimit = new int[totalLevel];
-        inputData = new int[totalLevel][][];
-        outputData = new int[totalLevel][][];
 
-        setLevel1();
-        setLevel2();
-        setLevel3();
-        setLevel4();
-        setLevel5();
+        switch (judgeLevel) {
+        case 1:
+            setLevel1();
+            break;
+        case 2:
+            setLevel2();
+            break;
+        case 3:
+            setLevel3();
+            break;
+        case 4:
+            setLevel4();
+            break;
+        case 5:
+            setLevel5();
+            break;
+        default:
+            break;
+        }
     }
 
     @Override
@@ -43,33 +53,33 @@ public class JudgeSystem extends Thread {
         lmc.setMailBoxes(mailBoxes);
         lmc.run();
         int inputIndex = 0, outputIndex = 0;
-        for(int testcase = 0; testcase < inputData[judgeLevel].length; testcase++) {
+        for(int testcase = 0; testcase < inputData.length; testcase++) {
             int time = 0;
             lmc.reset();
             try {
                 lmc.execute();
                 while (lmc.isRunning()) {
                     if (lmc.getWaitINP())
-                        lmc.setIO(inputData[judgeLevel][testcase][inputIndex++]);
+                        lmc.setIO(inputData[testcase][inputIndex++]);
                     else if (lmc.getWaitOUT()) {
                         int output = lmc.getIO();
-                        if (outputData[judgeLevel][testcase][outputIndex++] != output)
+                        if (outputData[testcase][outputIndex++] != output)
                             throw new WrongAnswerException();
                     }
 
                     try {
                         sleep(50);
                         time += 50;
-                        if(time > timeLimit[judgeLevel])
+                        if(time > timeLimit)
                             throw new TimeLimitExceededException();
                     } catch (Exception e) {
                     }
                 }
                 if(lmc.isErrorOccurred())
                     throw new RuntimeException();
-                if(inputIndex < inputData[judgeLevel].length)
+                if(inputIndex < inputData.length)
                     throw new WrongAnswerException();
-                if(outputIndex < outputData[judgeLevel].length)
+                if(outputIndex < outputData.length)
                     throw new WrongAnswerException();
             }catch(Exception e) {
                 correctAnswer = false;
@@ -90,7 +100,6 @@ public class JudgeSystem extends Thread {
 
     // INP and OUT
     private void setLevel1(){
-        int level = 1;
         int input[][] = {
                 {3},
                 {7},
@@ -105,14 +114,13 @@ public class JudgeSystem extends Thread {
                 {888},
                 {102}
         };
-        timeLimit[level] = 4999;
-        inputData[level] = input;
-        outputData[level] = output;
+        timeLimit = 4999;
+        inputData = input;
+        outputData = output;
     }
 
     // ADD
     private void setLevel2(){
-        int level = 2;
         int input[][] = {
                 {1, 2},
                 {2, 3},
@@ -127,14 +135,13 @@ public class JudgeSystem extends Thread {
                 {11},
                 {102}
         };
-        timeLimit[level] = 4999;
-        inputData[level] = input;
-        outputData[level] = output;
+        timeLimit = 4999;
+        inputData = input;
+        outputData = output;
     }
 
     // SUB
     private void setLevel3(){
-        int level = 3;
         int input[][] = {
                 {70, 8},
                 {50, 3},
@@ -149,14 +156,13 @@ public class JudgeSystem extends Thread {
                 {333},
                 {96}
         };
-        timeLimit[level] = 4999;
-        inputData[level] = input;
-        outputData[level] = output;
+        timeLimit = 4999;
+        inputData = input;
+        outputData = output;
     }
 
     // Check two number is same
     private void setLevel4(){
-        int level = 4;
         int input[][] = {
                 {4, 4},
                 {50, 51},
@@ -171,14 +177,13 @@ public class JudgeSystem extends Thread {
                 {0},
                 {0}
         };
-        timeLimit[level] = 4999;
-        inputData[level] = input;
-        outputData[level] = output;
+        timeLimit = 4999;
+        inputData = input;
+        outputData = output;
     }
 
     // ADD Until 0
     private void setLevel5(){
-        int level = 5;
         int input[][] = {
                 {1, 2, 3, 4, 5, 0},
                 {70, 23, 12, 23, 61, 123, 0},
@@ -193,9 +198,9 @@ public class JudgeSystem extends Thread {
                 {666},
                 {490}
         };
-        timeLimit[level] = 4999;
-        inputData[level] = input;
-        outputData[level] = output;
+        timeLimit = 4999;
+        inputData = input;
+        outputData = output;
     }
 
     public interface OnJudgeFinishedListener {
