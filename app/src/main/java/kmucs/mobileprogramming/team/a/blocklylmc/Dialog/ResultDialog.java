@@ -142,9 +142,13 @@ public class ResultDialog extends DialogFragment implements Callback<ResponseDat
                     .build();
 
             RetrofitService retrofitService = retrofit.create(RetrofitService.class);
-
-            Call<ResponseData> call = retrofitService.record(username, level, cycle);
-            call.enqueue(this);
+            if(success) {
+                Call<ResponseData> call = retrofitService.record(username, level, cycle);
+                call.enqueue(this);
+            } else {
+                Call<ResponseData> call = retrofitService.leaderboard(level);
+                call.enqueue(this);
+            }
             //call.execute();
         } catch (Exception e){
             e.printStackTrace();
