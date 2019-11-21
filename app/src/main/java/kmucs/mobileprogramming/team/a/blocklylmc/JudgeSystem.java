@@ -51,14 +51,13 @@ public class JudgeSystem extends Thread {
     public void run() {
         LMC lmc = new LMC();
         lmc.setMailBoxes(mailBoxes);
-        lmc.start();
-        int inputIndex = 0, outputIndex = 0;
         for(int testcase = 0; testcase < inputData.length; testcase++) {
             int time = 0;
+            int inputIndex = 0, outputIndex = 0;
             lmc.reset();
             try {
-                lmc.execute();
-                while (lmc.isRunning()) {
+                while (!lmc.isCOB()) {
+                    lmc.step();
                     if (lmc.getWaitINP())
                         lmc.setIO(inputData[testcase][inputIndex++]);
                     else if (lmc.getWaitOUT()) {
@@ -68,18 +67,19 @@ public class JudgeSystem extends Thread {
                     }
 
                     try {
-                        sleep(50);
-                        time += 50;
-                        if(time > timeLimit)
-                            throw new TimeLimitExceededException();
+                        sleep(10);
                     } catch (Exception e) {
                     }
+
+                    time += 10;
+                    if(time > timeLimit)
+                        throw new TimeLimitExceededException();
                 }
                 if(lmc.isErrorOccurred())
                     throw new RuntimeException();
-                if(inputIndex < inputData.length)
+                if(inputIndex < inputData[testcase].length)
                     throw new WrongAnswerException();
-                if(outputIndex < outputData.length)
+                if(outputIndex < outputData[testcase].length)
                     throw new WrongAnswerException();
             }catch(Exception e) {
                 correctAnswer = false;

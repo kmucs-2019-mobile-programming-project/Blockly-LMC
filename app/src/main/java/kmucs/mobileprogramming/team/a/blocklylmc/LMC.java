@@ -127,6 +127,8 @@ public class LMC extends Thread {
 
     public boolean isRunning() { return running; }
 
+    public boolean isCOB(){ return COB; }
+
     public boolean isErrorOccurred() { return errorOccurred; }
 
     private boolean isZero(){ return PSR % 10 == 1; }
