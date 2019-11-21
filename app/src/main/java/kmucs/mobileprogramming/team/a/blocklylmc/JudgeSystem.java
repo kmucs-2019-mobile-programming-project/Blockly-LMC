@@ -79,6 +79,8 @@ public class JudgeSystem extends Thread {
     }
 
     public boolean isCorrectAnswer(){ return correctAnswer; }
+    // return cycle of last testcase
+    public int getCycle(){ return cycle; }
 
     // INP and OUT
     private void setLevel1(){
