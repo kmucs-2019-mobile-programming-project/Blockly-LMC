@@ -2,35 +2,60 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_height="0dip"
+        android:layout_width="fill_parent"
+        android:layout_weight=".1"
+        android:id="@+id/layout_relative1"
+        android:background="@drawable/border">
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/blocklyicon"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
+    </RelativeLayout>
 
     <LinearLayout
-        android:layout_width="0dip"
-        android:layout_height="fill_parent"
-        android:layout_weight="0.15"/>
+        android:layout_height="0dip"
+        android:layout_width="fill_parent"
+        android:layout_weight=".9"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="0dip"
-        android:layout_height="fill_parent"
-        android:layout_weight=".7"
-        android:orientation="vertical"
-        android:gravity="center">
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/btn_challenge"
-            android:text="Challenge" />
+        <LinearLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.15" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/btn_practice"
-            android:text="Practice" />
+        <LinearLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight=".7"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btn_challenge"
+                android:layout_width="214dp"
+                android:layout_height="147dp"
+                android:background="@drawable/challengebtn" />
+
+            <Button
+                android:layout_marginTop="100dp"
+                android:id="@+id/btn_practice"
+                android:layout_width="209dp"
+                android:layout_height="138dp"
+                android:background="@drawable/practicebtn" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.15" />
+
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="0dip"
-        android:layout_height="fill_parent"
-        android:layout_weight="0.15"/>
 
 </LinearLayout>
