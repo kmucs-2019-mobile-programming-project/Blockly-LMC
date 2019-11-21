@@ -83,7 +83,7 @@ public class ResultDialog extends DialogFragment implements Callback<ResponseDat
 
         showProgress();
 
-        judgeSystem.run();
+        judgeSystem.start();
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Result")
