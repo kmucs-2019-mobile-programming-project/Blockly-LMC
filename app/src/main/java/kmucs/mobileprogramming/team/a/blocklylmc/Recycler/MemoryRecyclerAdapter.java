@@ -48,7 +48,7 @@ public class MemoryRecyclerAdapter extends RecyclerView.Adapter<MemoryRecyclerAd
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         String code = Integer.toString(lmcData[position]);
         if(position == currentRow)
-            holder.linearLayout.setBackgroundColor(0x32000000);
+            holder.linearLayout.setBackgroundResource(R.color.memoryCellCurrent);
         holder.memory_loc.setText(Integer.toString(position));
         holder.memory_disassemble.setText(InstructionSet.disassemble(lmcData[position]));
         holder.memory_code.setText(code);
@@ -56,6 +56,8 @@ public class MemoryRecyclerAdapter extends RecyclerView.Adapter<MemoryRecyclerAd
 
     @Override
     public int getItemCount() {
+        if(lmcData == null)
+            return 0;
         return lmcData.length;
     }
 
