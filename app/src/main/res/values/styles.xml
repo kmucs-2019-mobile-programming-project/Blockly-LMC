@@ -13,7 +13,7 @@
         <item name="android:paddingBottom">4dp</item>
     </style>
     <style name="RegisterLabel" parent="@style/RegisterText">
-        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:background">@color/registerName</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
 

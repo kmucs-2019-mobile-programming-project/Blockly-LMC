@@ -9,4 +9,6 @@
     <color name="resultRecordOdd">#10000000</color>
     <color name="resultRecordEven">@android:color/transparent</color>
     <color name="memoryCellCurrent">#32000000</color>
+    <color name="registerName">#008577</color>
+    <color name="registerBorder">#00574B</color>
 </resources>
