@@ -104,14 +104,16 @@ public class ResultDialog extends DialogFragment implements Callback<ResponseDat
     }
 
     void showProgress(){
-        result.setVisibility(View.GONE);
-        leaderboardRecycler.setVisibility(View.GONE);
+//        result.setVisibility(View.GONE);
+//        leaderboardRecycler.setVisibility(View.GONE);
         loadingSpinner.setVisibility(View.VISIBLE);
     }
 
     void hideProgress(){
-        result.setVisibility(View.VISIBLE);
-        leaderboardRecycler.setVisibility(View.VISIBLE);
+//        result.setVisibility(View.VISIBLE);
+//        leaderboardRecycler.setVisibility(View.VISIBLE);
+//        ViewGroup.LayoutParams params = leaderboardRecycler.getLayoutParams();
+//        params.width = ViewGroup.LayoutParams.MATCH_PARENT;
         loadingSpinner.setVisibility(View.GONE);
     }
 
