@@ -1,3 +1,7 @@
+/*
+    작성자 : 20181619 박종흠
+ */
+
 package kmucs.mobileprogramming.team.a.blocklylmc;
 
 import android.content.DialogInterface;

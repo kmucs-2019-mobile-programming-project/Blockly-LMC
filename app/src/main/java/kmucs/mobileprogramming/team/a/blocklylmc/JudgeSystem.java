@@ -203,10 +203,16 @@ public class JudgeSystem extends Thread {
         outputData = output;
     }
 
+    /*
+        작성자 : 20181619 박종흠
+     */
     public interface OnJudgeFinishedListener {
         void onJudgeFinished(int level, int cycle, boolean success);
     }
 
+    /*
+        작성자 20181619 박종흠
+     */
     public void setOnJudgeFinishedListener(OnJudgeFinishedListener listener){
         mListener = listener;
     }

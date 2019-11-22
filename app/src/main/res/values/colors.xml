@@ -3,6 +3,7 @@
     <color name="colorPrimary">#E7E6E6</color>
     <color name="colorPrimaryDark">#b9b6b6</color>
     <color name="colorAccent">#D81B60</color>
+<!--  작성자 : 20181619 박종흠  -->
     <color name="resultSuccess">#00BD03</color>
     <color name="resultFailed">#FF0000</color>
     <color name="resultMyRecordBackground">#F9FE67</color>
@@ -11,4 +12,5 @@
     <color name="memoryCellCurrent">#32000000</color>
     <color name="registerName">#008577</color>
     <color name="registerBorder">#00574B</color>
+<!--  작성자 : 20181619 박종흠  -->
 </resources>
