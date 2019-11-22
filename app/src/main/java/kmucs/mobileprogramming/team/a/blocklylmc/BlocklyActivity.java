@@ -39,6 +39,8 @@ public class BlocklyActivity extends AppCompatActivity implements Dialog.OnClick
     int[] mailBoxes;
     boolean isSubmit;
 
+    boolean isPractice;
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,11 +48,13 @@ public class BlocklyActivity extends AppCompatActivity implements Dialog.OnClick
 
         fab = findViewById(R.id.floatingActionButton);
         fab.setVisibility(View.GONE);
+        isPractice = true;
 
         Bundle bundle = getIntent().getExtras();
         if(bundle != null){
             lv = bundle.getInt("lv", -1);
             if(lv != -1) {
+                isPractice = false;
                 fab.setVisibility(View.VISIBLE);
                 fab.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -136,11 +140,11 @@ public class BlocklyActivity extends AppCompatActivity implements Dialog.OnClick
     public void submit(){
         Bundle dialogBundle = new Bundle();
         dialogBundle.putString("username", "v");
-        dialogBundle.putInt("lv",lv);
+        dialogBundle.putInt("lv", lv);
         dialogBundle.putIntArray("mailBoxes", mailBoxes);
         ResultDialog resultdialog = new ResultDialog();
         resultdialog.setOnClickListener(this);
-        resultdialog.setTargetFragment(getSupportFragmentManager().getFragment(new Bundle(),"blocklyActivity"),0);
+        resultdialog.setTargetFragment(getSupportFragmentManager().getFragment(new Bundle(), "blocklyActivity"), 0);
         resultdialog.setArguments(dialogBundle);
         resultdialog.show(getSupportFragmentManager(), "result dialog");
     }
@@ -149,8 +153,11 @@ public class BlocklyActivity extends AppCompatActivity implements Dialog.OnClick
     public void onClick(View v) {
         int viewId = v.getId();
         if(viewId == R.id.btn_submit){
-            isSubmit=true;
-            webView.loadUrl("javascript:generateCode()");
+            if(isPractice) Toast.makeText(getApplicationContext(), "도전 모드에서만 제출할 수 있습니다", Toast.LENGTH_LONG).show();
+            else {
+                isSubmit = true;
+                webView.loadUrl("javascript:generateCode()");
+            }
         }
     }
 }
