@@ -47,6 +47,7 @@ public class ResultDialog extends DialogFragment implements Callback<ResponseDat
     private int level;
     private String username;
     private int[] mailBoxes;
+    public boolean onProgress;
 
     private JudgeSystem judgeSystem;
 
@@ -54,7 +55,7 @@ public class ResultDialog extends DialogFragment implements Callback<ResponseDat
 
     private Dialog.OnClickListener onClickListener;
 
-    public void setOnClickListener(Dialog.OnClickListener listener){
+    public void setOnClickListener(Dialog.OnClickListener listener) {
         onClickListener = listener;
     }
 
@@ -93,7 +94,7 @@ public class ResultDialog extends DialogFragment implements Callback<ResponseDat
         builder.setTitle("Result")
                 .setView(resultLayout)
                 .setCancelable(false)
-                .setPositiveButton("계속 풀기",onClickListener)
+                .setPositiveButton("계속 풀기", onClickListener)
                 .setNeutralButton("문제 목록", onClickListener);
 
         ResultDialogLeaderboardAdapter adapter = new ResultDialogLeaderboardAdapter(leaderboard, username);
@@ -103,32 +104,46 @@ public class ResultDialog extends DialogFragment implements Callback<ResponseDat
 
         Dialog dialog = builder.create();
         dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(false);
 
         return dialog;
     }
 
-    void showProgress(){
+    @Override
+    public void onStart() {
+        super.onStart();
+        AlertDialog dialog = (AlertDialog) getDialog();
+        dialog.getButton(DialogInterface.BUTTON_POSITIVE).setEnabled(false);
+        dialog.getButton(DialogInterface.BUTTON_NEUTRAL).setEnabled(false);
+    }
+
+    void showProgress() {
 //        result.setVisibility(View.GONE);
 //        leaderboardRecycler.setVisibility(View.GONE);
         loadingSpinner.setVisibility(View.VISIBLE);
+        onProgress = true;
     }
 
-    void hideProgress(){
+    void hideProgress() {
 //        result.setVisibility(View.VISIBLE);
 //        leaderboardRecycler.setVisibility(View.VISIBLE);
 //        ViewGroup.LayoutParams params = leaderboardRecycler.getLayoutParams();
 //        params.width = ViewGroup.LayoutParams.MATCH_PARENT;
         loadingSpinner.setVisibility(View.GONE);
+        onProgress = false;
+        AlertDialog dialog = (AlertDialog) getDialog();
+        dialog.getButton(DialogInterface.BUTTON_POSITIVE).setEnabled(true);
+        dialog.getButton(DialogInterface.BUTTON_NEUTRAL).setEnabled(true);
     }
 
     @Override
     public void onResponse(Call<ResponseData> call, Response<ResponseData> response) {
         ResponseData responseData = response.body();
         leaderboard = responseData.getLeaderboard();
-        ((ResultDialogLeaderboardAdapter)leaderboardRecycler.getAdapter()).setLeaderBoardItem(leaderboard);
+        ((ResultDialogLeaderboardAdapter) leaderboardRecycler.getAdapter()).setLeaderBoardItem(leaderboard);
         leaderboardRecycler.getAdapter().notifyDataSetChanged();
         hideProgress();
-}
+    }
 
     @Override
     public void onFailure(Call<ResponseData> call, Throwable t) {
@@ -137,8 +152,8 @@ public class ResultDialog extends DialogFragment implements Callback<ResponseDat
 
     @Override
     public void onJudgeFinished(int level, int cycle, boolean success) {
-        @StringRes int resultStringId = (success?R.string.dialog_result_success:R.string.dialog_result_failed);
-        @StyleRes int resultStyleId = (success?R.style.ResultDialog_TextAppearance_Result_Success:R.style.ResultDialog_TextAppearance_Result_Failed);
+        @StringRes int resultStringId = (success ? R.string.dialog_result_success : R.string.dialog_result_failed);
+        @StyleRes int resultStyleId = (success ? R.style.ResultDialog_TextAppearance_Result_Success : R.style.ResultDialog_TextAppearance_Result_Failed);
         result.setText(resultStringId);
         result.setTextAppearance(resultStyleId);
         try {
@@ -148,7 +163,7 @@ public class ResultDialog extends DialogFragment implements Callback<ResponseDat
                     .build();
 
             RetrofitService retrofitService = retrofit.create(RetrofitService.class);
-            if(success) {
+            if (success) {
                 Call<ResponseData> call = retrofitService.record(username, level, cycle);
                 call.enqueue(this);
             } else {
@@ -156,7 +171,7 @@ public class ResultDialog extends DialogFragment implements Callback<ResponseDat
                 call.enqueue(this);
             }
             //call.execute();
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
