@@ -22,7 +22,7 @@ public class NumberPickerDialog extends DialogFragment {
 
         numberPicker.setValue(0);
         numberPicker.setMinValue(0);
-        numberPicker.setMaxValue(99);
+        numberPicker.setMaxValue(999);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Input")
