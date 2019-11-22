@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,6 +20,11 @@ public class MainMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mainmenu);
         Button btnChallenge = findViewById(R.id.btn_challenge);
         Button btnPractice = findViewById(R.id.btn_practice);
+
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.setHomeAsUpIndicator(R.drawable.ic_blockly);
+        actionbar.setDisplayHomeAsUpEnabled(true);
+        actionbar.setTitle("");
 
         btnChallenge.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -3,6 +3,7 @@ package kmucs.mobileprogramming.team.a.blocklylmc;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
@@ -11,6 +12,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -40,6 +43,13 @@ public class EmulatorActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emulator);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_back);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        // actionBar.setIcon(R.drawable.back);
+        actionBar.setTitle("Back to the code");
+
         lmcMailbox = getIntent().getIntArrayExtra("mailBoxes");
 
         lmcRegisterView = findViewById(R.id.lmc_register_view);
@@ -147,6 +157,16 @@ public class EmulatorActivity extends AppCompatActivity implements View.OnClickL
         numberPickerValue = picker.getValue();
         machine.setIO(picker.getValue());
         updateRegister();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if(id == android.R.id.home){
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     void updateRegister(){

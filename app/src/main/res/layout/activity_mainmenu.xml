@@ -4,20 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_height="0dip"
-        android:layout_width="fill_parent"
-        android:layout_weight=".1"
-        android:id="@+id/layout_relative1"
-        android:background="@drawable/border">
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/blocklyicon"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"/>
-    </RelativeLayout>
-
     <LinearLayout
         android:layout_height="0dip"
         android:layout_width="fill_parent"

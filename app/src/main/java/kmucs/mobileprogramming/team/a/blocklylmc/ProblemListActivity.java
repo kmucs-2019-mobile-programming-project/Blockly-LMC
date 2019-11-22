@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ProblemListActivity extends AppCompatActivity implements View.OnClickListener {
@@ -12,6 +13,11 @@ public class ProblemListActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_problemlist);
+
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.setHomeAsUpIndicator(R.drawable.ic_blockly);
+        actionbar.setDisplayHomeAsUpEnabled(true);
+        actionbar.setTitle("");
 
         for(int i=0; i<btn_problem.length; i++){
             findViewById(btn_problem[i]).setOnClickListener(this);

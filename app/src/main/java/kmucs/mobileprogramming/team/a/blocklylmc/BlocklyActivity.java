@@ -1,6 +1,7 @@
 package kmucs.mobileprogramming.team.a.blocklylmc;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
@@ -43,6 +44,11 @@ public class BlocklyActivity extends AppCompatActivity implements Dialog.OnClick
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blockly);
+
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.setHomeAsUpIndicator(R.drawable.ic_blockly);
+        actionbar.setDisplayHomeAsUpEnabled(true);
+        actionbar.setTitle("");
 
         fab = findViewById(R.id.floatingActionButton);
         fab.setVisibility(View.GONE);
@@ -135,7 +141,7 @@ public class BlocklyActivity extends AppCompatActivity implements Dialog.OnClick
 
     public void submit(){
         Bundle dialogBundle = new Bundle();
-        dialogBundle.putString("username", "v");
+        dialogBundle.putString("username", getSharedPreferences("User_Info", MODE_PRIVATE).getString("username", ""));
         dialogBundle.putInt("lv",lv);
         dialogBundle.putIntArray("mailBoxes", mailBoxes);
         ResultDialog resultdialog = new ResultDialog();

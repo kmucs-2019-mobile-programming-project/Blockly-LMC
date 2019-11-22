@@ -1,5 +1,6 @@
 package kmucs.mobileprogramming.team.a.blocklylmc;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -15,6 +16,11 @@ public class ProblemViewerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_problem_viewer);
+
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.setHomeAsUpIndicator(R.drawable.ic_blockly);
+        actionbar.setDisplayHomeAsUpEnabled(true);
+        actionbar.setTitle("");
 
         Intent args = getIntent();
         int level = args.getExtras().getInt("lv", 1);
