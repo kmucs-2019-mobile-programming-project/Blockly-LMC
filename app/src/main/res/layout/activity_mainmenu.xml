@@ -41,14 +41,16 @@
                 android:id="@+id/btn_challenge"
                 android:layout_width="214dp"
                 android:layout_height="147dp"
-                android:background="@drawable/challengebtn" />
+                android:background="@drawable/challengebtn"
+                style="?android:attr/borderlessButtonStyle"/> # 버튼그림자 없애기-김예지
 
             <Button
                 android:layout_marginTop="100dp"
                 android:id="@+id/btn_practice"
                 android:layout_width="209dp"
                 android:layout_height="138dp"
-                android:background="@drawable/practicebtn" />
+                android:background="@drawable/practicebtn"
+                style="?android:attr/borderlessButtonStyle"/> # 버튼그림자 없애기-김예지
         </LinearLayout>
 
         <LinearLayout
@@ -59,3 +61,4 @@
     </LinearLayout>
 
 </LinearLayout>
+
