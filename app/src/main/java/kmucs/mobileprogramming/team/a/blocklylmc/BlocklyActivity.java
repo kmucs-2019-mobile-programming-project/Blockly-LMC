@@ -55,7 +55,6 @@ public class BlocklyActivity extends AppCompatActivity implements Dialog.OnClick
                 fab.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(getApplicationContext(), String.valueOf(lv), Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(BlocklyActivity.this, ProblemViewerActivity.class);
                         intent.putExtra("lv", lv);
                         startActivity(intent);
