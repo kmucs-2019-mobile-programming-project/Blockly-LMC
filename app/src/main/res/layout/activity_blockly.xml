@@ -5,9 +5,8 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_height="0dip"
-        android:layout_width="fill_parent"
-        android:layout_weight=".9"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -48,13 +47,21 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="실행"/>
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/runbtn"/>
                 <Button
                     android:id="@+id/btn_submit"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="제출"/>
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/submitbtn"/>
             </LinearLayout>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
