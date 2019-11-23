@@ -25,18 +25,28 @@
 
             <Button
                 android:id="@+id/btn_challenge"
-                android:layout_width="214dp"
-                android:layout_height="147dp"
-                android:background="@drawable/challengebtn"
-                style="?android:attr/borderlessButtonStyle"/> # 버튼그림자 없애기-김예지
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="250dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="120dp"
+                android:background="@drawable/challengebtn" /> <!-- 버튼그림자 없애기-김예지 -->
 
             <Button
-                android:layout_marginTop="100dp"
                 android:id="@+id/btn_practice"
-                android:layout_width="209dp"
-                android:layout_height="138dp"
-                android:background="@drawable/practicebtn"
-                style="?android:attr/borderlessButtonStyle"/> # 버튼그림자 없애기-김예지
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="220dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="100dp"
+                android:background="@drawable/practicebtn" /> <!-- 버튼그림자 없애기-김예지 -->
+
+            <TextView
+                android:id="@+id/tv_license"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:text="@string/license"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
         </LinearLayout>
 
         <LinearLayout
