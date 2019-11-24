@@ -22,4 +22,5 @@
     <string name="dialog_result_success">Success</string>
     <string name="dialog_result_failed">Failed</string>
 <!--  작업자 : 20181619 박종흠  -->
+    <string name="license"><u>오픈소스 라이센스</u></string>
 </resources>
