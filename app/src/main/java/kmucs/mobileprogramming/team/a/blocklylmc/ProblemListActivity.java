@@ -8,6 +8,10 @@ import android.view.View;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * 작성자 : 20181617 박정현
+ */
+
 public class ProblemListActivity extends AppCompatActivity implements View.OnClickListener {
     int[] btn_problem = {R.id.btn_lv1, R.id.btn_lv2};
     protected void onCreate(Bundle savedInstanceState) {

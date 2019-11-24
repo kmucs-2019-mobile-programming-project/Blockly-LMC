@@ -16,6 +16,10 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * 작성자 : 20181617 박정현
+ */
+
 public class RetrofitTestActivity extends AppCompatActivity {
     EditText et_username, et_level, et_cycle;
     Button btn_record, btn_leaderboard;

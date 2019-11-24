@@ -4,6 +4,10 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
+/**
+ * 작성자 : 20181617 박정현
+ */
+
 public interface RetrofitService {
     // 서버 URL
     public static final String requestBaseURL = "http://mpserverapp.8ffbgpczpa.ap-southeast-1.elasticbeanstalk.com/api/";

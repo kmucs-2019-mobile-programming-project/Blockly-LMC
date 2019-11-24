@@ -25,6 +25,10 @@ import javax.xml.transform.Result;
 
 import kmucs.mobileprogramming.team.a.blocklylmc.Dialog.ResultDialog;
 
+/**
+ * 작성자 : 20181617 박정현
+ */
+
 public class BlocklyActivity extends AppCompatActivity implements Dialog.OnClickListener, View.OnClickListener {
     private final Handler handler = new Handler();
 

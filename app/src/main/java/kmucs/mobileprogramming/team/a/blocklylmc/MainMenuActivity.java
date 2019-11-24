@@ -22,6 +22,10 @@ import kmucs.mobileprogramming.team.a.blocklylmc.materialshowcaseview.MaterialSh
 import kmucs.mobileprogramming.team.a.blocklylmc.materialshowcaseview.MaterialShowcaseView;
 import kmucs.mobileprogramming.team.a.blocklylmc.materialshowcaseview.ShowcaseConfig;
 
+/**
+ * 작성자 : 20181617 박정현
+ */
+
 public class MainMenuActivity extends AppCompatActivity {
 
     @Override

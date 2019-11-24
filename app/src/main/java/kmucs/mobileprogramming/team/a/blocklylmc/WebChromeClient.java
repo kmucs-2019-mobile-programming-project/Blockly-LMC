@@ -5,6 +5,9 @@ import android.webkit.JsResult;
 import android.webkit.WebView;
 
 /**
+ * 작성자 : 20181617 박정현
+ */
+/**
  * Provides native hooks for JavaScript console dialog functions.
  */
 public class WebChromeClient extends android.webkit.WebChromeClient {

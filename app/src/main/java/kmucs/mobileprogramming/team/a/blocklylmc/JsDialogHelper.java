@@ -32,6 +32,10 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 
 /**
+ * 작성자 : 20181617 박정현
+ */
+
+/**
  * Helper class to create JavaScript dialogs.
  * Adapted from android-9.0.0_r10/core/java/android/webkit/JsDialogHelper.java.
  * Removes dialog title (page domain) and uses a larger prompt message area than original.

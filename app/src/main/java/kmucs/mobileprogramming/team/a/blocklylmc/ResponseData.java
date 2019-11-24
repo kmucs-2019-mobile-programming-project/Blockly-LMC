@@ -1,5 +1,9 @@
 package kmucs.mobileprogramming.team.a.blocklylmc;
 
+/**
+ * 작성자 : 20181617 박정현
+ */
+
 public class ResponseData {
     String status;
     String message;

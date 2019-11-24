@@ -5,6 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+/**
+ * 작성자 : 20181617 박정현
+ */
+
 public class TutorialActivity extends Activity {
     int[] layout = {R.layout.activity_tutorial_problemlist, R.layout.activity_tutorial_blockly};
     protected void onCreate(Bundle savedInstanceState) {
