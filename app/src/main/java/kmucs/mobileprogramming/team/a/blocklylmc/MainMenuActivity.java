@@ -11,6 +11,7 @@ import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import android.app.AlertDialog;
@@ -32,8 +33,8 @@ public class MainMenuActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainmenu);
-        Button btnChallenge = findViewById(R.id.btn_challenge);
-        Button btnPractice = findViewById(R.id.btn_practice);
+        ImageButton btnChallenge = findViewById(R.id.btn_challenge);
+        ImageButton btnPractice = findViewById(R.id.btn_practice);
 
         ActionBar actionbar = getSupportActionBar();
         actionbar.setHomeAsUpIndicator(R.drawable.ic_blockly);

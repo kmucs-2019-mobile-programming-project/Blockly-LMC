@@ -23,27 +23,32 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <Button
+            <ImageButton
                 android:id="@+id/btn_challenge"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="250dp"
-                android:layout_height="120dp"
-                android:layout_marginTop="120dp"
-                android:background="@drawable/challengebtn" /> <!-- 버튼그림자 없애기-김예지 -->
+                style="@style/LMC.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginTop="150dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/challengebtn" /> <!-- 버튼그림자 없애기-김예지 -->
 
-            <Button
+            <ImageButton
                 android:id="@+id/btn_practice"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="220dp"
-                android:layout_height="120dp"
-                android:layout_marginTop="100dp"
-                android:background="@drawable/practicebtn" /> <!-- 버튼그림자 없애기-김예지 -->
+                style="@style/LMC.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginTop="80dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/practicebtn" /> <!-- 버튼그림자 없애기-김예지 -->
 
             <TextView
                 android:id="@+id/tv_license"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="100dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginTop="50dp"
                 android:text="@string/license"
                 android:textSize="20sp"
                 android:textStyle="bold"/>

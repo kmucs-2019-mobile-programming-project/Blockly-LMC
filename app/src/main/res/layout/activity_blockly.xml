@@ -33,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent=".90" />
+                app:layout_constraintGuide_percent=".85" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -42,27 +42,26 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/guideline"
+                android:paddingTop="10dp"
                 android:orientation="horizontal">
-                <Button
+                <ImageButton
                     android:id="@+id/btn_run"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="@drawable/runbtn"/>
-                <Button
+                    android:src="@drawable/runbtn"
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"
+                    style="@style/Widget.AppCompat.Button.Borderless"/>
+                <ImageButton
                     android:id="@+id/btn_submit"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="@drawable/submitbtn"/>
+                    android:src="@drawable/submitbtn"
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"
+                    style="@style/Widget.AppCompat.Button.Borderless" />
             </LinearLayout>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton

@@ -17,6 +17,7 @@ import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -35,8 +36,8 @@ public class BlocklyActivity extends AppCompatActivity implements Dialog.OnClick
     WebView webView;
     WebSettings webSettings;
 
-    Button btn_run;
-    Button btn_submit;
+    ImageButton btn_run;
+    ImageButton btn_submit;
 
     FloatingActionButton fab;
     int lv;
