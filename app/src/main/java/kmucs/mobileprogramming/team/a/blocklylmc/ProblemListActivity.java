@@ -13,7 +13,12 @@ import androidx.appcompat.app.AppCompatActivity;
  */
 
 public class ProblemListActivity extends AppCompatActivity implements View.OnClickListener {
-    int[] btn_problem = {R.id.btn_lv1, R.id.btn_lv2};
+    int[] btn_problem = {
+            R.id.btn_lv1,
+            R.id.btn_lv2,
+            R.id.btn_lv3,
+            R.id.btn_lv4,
+            R.id.btn_lv5};
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_problemlist);
@@ -37,6 +42,15 @@ public class ProblemListActivity extends AppCompatActivity implements View.OnCli
                 break;
             case R.id.btn_lv2:
                 lv = 2;
+                break;
+            case R.id.btn_lv3:
+                lv = 3;
+                break;
+            case R.id.btn_lv4:
+                lv = 4;
+                break;
+            case R.id.btn_lv5:
+                lv = 5;
                 break;
         }
 

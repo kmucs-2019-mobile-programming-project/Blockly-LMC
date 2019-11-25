@@ -10,7 +10,6 @@ class JudgeFinishedListenerNotFoundException extends RuntimeException{}
 public class JudgeSystem extends Thread {
     private int judgeLevel;
     private int[] mailBoxes;
-    private int totalLevel;
     private int timeLimit;
     private int[][] inputData;
     private int[][] outputData;
@@ -66,12 +65,7 @@ public class JudgeSystem extends Thread {
                             throw new WrongAnswerException();
                     }
 
-                    try {
-                        sleep(10);
-                    } catch (Exception e) {
-                    }
-
-                    time += 10;
+                    time++;
                     if(time > timeLimit)
                         throw new TimeLimitExceededException();
                 }
@@ -114,7 +108,7 @@ public class JudgeSystem extends Thread {
                 {888},
                 {102}
         };
-        timeLimit = 4999;
+        timeLimit = 49999;
         inputData = input;
         outputData = output;
     }
@@ -135,7 +129,7 @@ public class JudgeSystem extends Thread {
                 {11},
                 {102}
         };
-        timeLimit = 4999;
+        timeLimit = 49999;
         inputData = input;
         outputData = output;
     }
@@ -156,7 +150,7 @@ public class JudgeSystem extends Thread {
                 {333},
                 {96}
         };
-        timeLimit = 4999;
+        timeLimit = 49999;
         inputData = input;
         outputData = output;
     }
@@ -177,7 +171,7 @@ public class JudgeSystem extends Thread {
                 {0},
                 {0}
         };
-        timeLimit = 4999;
+        timeLimit = 49999;
         inputData = input;
         outputData = output;
     }
@@ -198,7 +192,7 @@ public class JudgeSystem extends Thread {
                 {666},
                 {490}
         };
-        timeLimit = 4999;
+        timeLimit = 49999;
         inputData = input;
         outputData = output;
     }

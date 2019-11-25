@@ -9,6 +9,7 @@ public class LMC extends Thread {
     private int numOfMailBox = 100;
     private int valueCapacity = 1000;
     private int[] mailBoxes;
+    private int[] backupMailBoxes;
 
     private int CYCLE;
 
@@ -36,13 +37,17 @@ public class LMC extends Thread {
     private int instructionDelay = 50;
 
     public LMC(){
+        backupMailBoxes = new int[numOfMailBox];
         mailBoxes = new int[numOfMailBox];
-        resetAll();
+        reset();
     }
 
     public int getCYCLE(){ return CYCLE; }
     public int[] getMailBoxes(){ return mailBoxes; }
-    public void setMailBoxes(int[] mailBoxes){ this.mailBoxes = mailBoxes; }
+    public void setMailBoxes(int[] mailBoxes){
+        backupMailBoxes = mailBoxes;
+        resetMailBox();
+    }
     public int getPC(){ return PC; }
     public int getIR(){ return IR; }
     public int getPSR(){ return PSR; }
@@ -79,12 +84,13 @@ public class LMC extends Thread {
         CYCLE = 0;
         resetRegister();
         resetFlag();
+        resetMailBox();
         running = false;
     }
 
     public void resetMailBox(){
         for(int i = 0; i < numOfMailBox; i++)
-            mailBoxes[i] = 0;
+            mailBoxes[i] = backupMailBoxes[i];
     }
 
     public void resetRegister(){
@@ -95,13 +101,6 @@ public class LMC extends Thread {
         running = true;
         waitINP = waitOUT = COB = false;
         errorOccurred = false;
-    }
-
-    public void resetAll(){
-        CYCLE = 0;
-        resetMailBox();
-        resetRegister();
-        resetFlag();
     }
 
     @Override

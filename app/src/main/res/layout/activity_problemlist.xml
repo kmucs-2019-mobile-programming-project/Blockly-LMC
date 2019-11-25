@@ -12,35 +12,63 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:gravity ="center"
+            android:fillViewport="true"
+            android:layout_marginTop="0dp"
+            android:id="@+id/scrollView">
 
-            <Button
-                android:id="@+id/btn_lv1"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="178dp"
-                android:layout_height="110dp"
-                android:background="@drawable/lv1btn" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
 
-            <Button
-                android:id="@+id/btn_lv2"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="188dp"
-                android:layout_height="111dp"
-                android:layout_marginTop="60dp"
-                android:background="@drawable/lv2btn" />
+                <Button
+                    android:id="@+id/btn_lv1"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="178dp"
+                    android:layout_height="110dp"
+                    android:background="@drawable/lv1btn" />
 
-            <Button
-                android:id="@+id/btn_lv3"
-                style="?android:attr/borderlessButtonStyle" 
-                android:layout_width="202dp"
-                android:layout_height="110dp"
-                android:layout_marginTop="60dp"
-                android:background="@drawable/lv3btn" /> # 3개버튼 그림자 없애기 추가 -김예지
-        </LinearLayout>
+                <Button
+                    android:id="@+id/btn_lv2"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="188dp"
+                    android:layout_height="111dp"
+                    android:layout_marginTop="60dp"
+                    android:background="@drawable/lv2btn" />
+
+                <Button
+                    android:id="@+id/btn_lv3"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="202dp"
+                    android:layout_height="110dp"
+                    android:layout_marginTop="60dp"
+                    android:background="@drawable/lv3btn" />
+
+                <!-- 3개버튼 그림자 없애기 추가 -김예지 -->
+
+                <Button
+                    android:id="@+id/btn_lv4"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="202dp"
+                    android:layout_height="110dp"
+                    android:layout_marginTop="60dp"
+                    android:background="@drawable/lv4btn" />
+
+                <Button
+                    android:id="@+id/btn_lv5"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="202dp"
+                    android:layout_height="110dp"
+                    android:layout_marginTop="60dp"
+                    android:background="@drawable/lv5btn" />
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 
 </LinearLayout>
