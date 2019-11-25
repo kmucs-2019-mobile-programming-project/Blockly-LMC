@@ -41,10 +41,6 @@
             android:name=".ProblemListActivity"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".TutorialActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:screenOrientation="portrait">
-        </activity>
     </application>
 
 </manifest>

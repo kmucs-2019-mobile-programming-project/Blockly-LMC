@@ -97,17 +97,6 @@ public class BlocklyActivity extends AppCompatActivity implements Dialog.OnClick
 
         btn_submit = findViewById(R.id.btn_submit);
         btn_submit.setOnClickListener(this);
-
-        SharedPreferences sharedPreferences = getSharedPreferences("Tutorial_Info", MODE_PRIVATE);
-        boolean isFirst = sharedPreferences.getBoolean("BlocklyActivity", false);
-        if(!isFirst) {
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putBoolean("BlocklyActivity", true);
-            editor.apply();
-            Intent intent = new Intent(this, TutorialActivity.class);
-            intent.putExtra("layout_idx", 1);
-            startActivity(intent);
-        }
     }
 
     @JavascriptInterface
