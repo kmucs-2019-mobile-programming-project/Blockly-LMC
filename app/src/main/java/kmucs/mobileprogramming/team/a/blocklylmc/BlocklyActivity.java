@@ -111,7 +111,7 @@ public class BlocklyActivity extends AppCompatActivity implements Dialog.OnClick
             MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(BlocklyActivity.this, getResources().getText(R.string.tutorial_blockly_challenge).toString());
             sequence.setConfig(config);
             sequence.addSequenceItem(btn_run, getResources().getText(R.string.tutorial_blockly_run).toString(), getResources().getText(R.string.tutorial_agree).toString());
-            sequence.addSequenceItem(btn_submit, getResources().getText(R.string.tutorial_blockly_submit).toString(), getResources().getText(R.string.tutorial_agree).toString());
+            sequence.addSequenceItem(btn_submit, getResources().getText(R.string.tutorial_blockly_submit_practice).toString(), getResources().getText(R.string.tutorial_agree).toString());
 //        sequence.addSequenceItem(btn_submit, getResources().getText(R.string.tutorial_blockly_submit).toString(), getResources().getText(R.string.tutorial_agree).toString());
             sequence.start();
         }

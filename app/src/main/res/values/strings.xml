@@ -34,11 +34,12 @@
     <string name="tutorial_blockly_introduce">블록코딩화면 소개</string>
     <string name="tutorial_blockly_run">이 버튼을 눌러 작성한 프로그램을 실행할 수 있습니다.</string>
     <string name="tutorial_blockly_submit">이 버튼을 눌러 작성한 프로그램을 채점해볼 수 있습니다.</string>
+    <string name="tutorial_blockly_submit_practice">이 버튼을 눌러 작성한 프로그램을 채점해볼 수 있습니다. 연습모드에서는 동작하지 않습니다.</string>
     <string name="tutorial_blockly_help">블럭 도움말 소개</string>
     <string name="tutorial_blockly_fab">이 버튼을 눌러 문제를 볼 수 있습니다.</string>
 
     <string name="tutorial_emulator_register">레지스터 값이 표시됩니다.</string>
-    <string name="tutorial_emulator_cycle">사이클이 표시됩니다. 사이클이란 프로그램 수행시간을 나타내는 지표입니다.</string>
+    <string name="tutorial_emulator_cycle">사이클이 표시됩니다. 사이클이 작은 프로그램이 빠른 수행시간을 갖습니다.</string>
     <string name="tutorial_emulator_memory">메모리 화면입니다.</string>
     <string name="tutorial_emulator_step">이 버튼으로 한 스텝씩 실행해볼 수 있습니다.</string>
     <string name="tutorial_emulator_reset">이 버튼으로 초기 상태로 리셋할 수 있습니다.</string>
