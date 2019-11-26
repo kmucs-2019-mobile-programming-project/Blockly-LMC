@@ -3,6 +3,7 @@ package kmucs.mobileprogramming.team.a.blocklylmc;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.SpannableString;
@@ -131,5 +132,15 @@ public class MainMenuActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        int delay = 50;
+        ShowcaseConfig config = new ShowcaseConfig();
+        config.setDelay(delay); // half second between each showcase view
+
+        MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(MainMenuActivity.this, getResources().getText(R.string.tutorial_mainmenu).toString());
+        sequence.setConfig(config);
+        sequence.addSequenceItem(btnChallenge, getResources().getText(R.string.tutorial_mainmenu_challenge).toString(), getResources().getText(R.string.tutorial_agree).toString());
+        sequence.addSequenceItem(btnPractice, getResources().getText(R.string.tutorial_mainmenu_practice).toString(), getResources().getText(R.string.tutorial_agree).toString());
+        sequence.start();
     }
 }

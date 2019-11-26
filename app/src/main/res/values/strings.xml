@@ -22,5 +22,34 @@
     <string name="dialog_result_success">Success</string>
     <string name="dialog_result_failed">Failed</string>
 <!--  작업자 : 20181619 박종흠  -->
+
+
+<!--  작업자 : 20181617 박정현 -->
     <string name="license"><u>오픈소스 라이센스</u></string>
+
+    <string name="tutorial_mainmenu_introduce">Blockly-LMC 소개</string>
+    <string name="tutorial_mainmenu_challenge">도전버튼 소개</string>
+    <string name="tutorial_mainmenu_practice">연습버튼 소개</string>
+
+    <string name="tutorial_blockly_introduce">블록코딩화면 소개</string>
+    <string name="tutorial_blockly_run">실행버튼 소개</string>
+    <string name="tutorial_blockly_submit">제출버튼 소개</string>
+    <string name="tutorial_blockly_help">블럭 도움말 소개</string>
+    <string name="tutorial_blockly_fab">문제보기 소개</string>
+
+    <string name="tutorial_emulator_register">레지스터 화면 소개</string>
+    <string name="tutorial_emulator_cycle">사이클 소개</string>
+    <string name="tutorial_emulator_memory">메모리 화면 소개</string>
+    <string name="tutorial_emulator_step">스텝실행 기능 소개</string>
+    <string name="tutorial_emulator_reset">리셋 기능 소개</string>
+
+
+    <string name="tutorial_agree">확인</string>
+
+    <string name="tutorial_mainmenu">tutorial_mainmenu</string>
+    <string name="tutorial_blockly_challenge">tutorial_blockly_challenge</string>
+    <string name="tutorial_blockly_practice">tutorial_blockly_practice</string>
+    <string name="tutorial_emulator">tutorial_emulator</string>
+
+    <!--  작업자 : 20181617 박정현  -->
 </resources>

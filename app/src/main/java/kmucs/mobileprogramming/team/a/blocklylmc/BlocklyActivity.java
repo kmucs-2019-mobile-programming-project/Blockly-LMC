@@ -10,6 +10,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -25,6 +26,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import javax.xml.transform.Result;
 
 import kmucs.mobileprogramming.team.a.blocklylmc.Dialog.ResultDialog;
+import kmucs.mobileprogramming.team.a.blocklylmc.materialshowcaseview.MaterialShowcaseSequence;
+import kmucs.mobileprogramming.team.a.blocklylmc.materialshowcaseview.MaterialShowcaseView;
+import kmucs.mobileprogramming.team.a.blocklylmc.materialshowcaseview.ShowcaseConfig;
 
 /**
  * 작성자 : 20181617 박정현
@@ -97,6 +101,32 @@ public class BlocklyActivity extends AppCompatActivity implements Dialog.OnClick
 
         btn_submit = findViewById(R.id.btn_submit);
         btn_submit.setOnClickListener(this);
+
+        int delay = 50;
+
+        if(isPractice){
+            ShowcaseConfig config = new ShowcaseConfig();
+            config.setDelay(delay); // half second between each showcase view
+
+            MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(BlocklyActivity.this, getResources().getText(R.string.tutorial_blockly_challenge).toString());
+            sequence.setConfig(config);
+            sequence.addSequenceItem(btn_run, getResources().getText(R.string.tutorial_blockly_run).toString(), getResources().getText(R.string.tutorial_agree).toString());
+            sequence.addSequenceItem(btn_submit, getResources().getText(R.string.tutorial_blockly_submit).toString(), getResources().getText(R.string.tutorial_agree).toString());
+//        sequence.addSequenceItem(btn_submit, getResources().getText(R.string.tutorial_blockly_submit).toString(), getResources().getText(R.string.tutorial_agree).toString());
+            sequence.start();
+        }
+        else{
+            ShowcaseConfig config = new ShowcaseConfig();
+            config.setDelay(delay); // half second between each showcase view
+
+            MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(BlocklyActivity.this, getResources().getText(R.string.tutorial_blockly_practice).toString());
+            sequence.setConfig(config);
+            sequence.addSequenceItem(btn_run, getResources().getText(R.string.tutorial_blockly_run).toString(), getResources().getText(R.string.tutorial_agree).toString());
+            sequence.addSequenceItem(btn_submit, getResources().getText(R.string.tutorial_blockly_submit).toString(), getResources().getText(R.string.tutorial_agree).toString());
+            sequence.addSequenceItem(fab, getResources().getText(R.string.tutorial_blockly_fab).toString(), getResources().getText(R.string.tutorial_agree).toString());
+//        sequence.addSequenceItem(btn_submit, getResources().getText(R.string.tutorial_blockly_submit).toString(), getResources().getText(R.string.tutorial_agree).toString());
+            sequence.start();
+        }
     }
 
     @JavascriptInterface

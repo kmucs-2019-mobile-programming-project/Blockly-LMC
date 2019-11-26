@@ -25,6 +25,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import kmucs.mobileprogramming.team.a.blocklylmc.Dialog.NumberPickerDialog;
 import kmucs.mobileprogramming.team.a.blocklylmc.Recycler.MemoryRecyclerAdapter;
+import kmucs.mobileprogramming.team.a.blocklylmc.materialshowcaseview.MaterialShowcaseSequence;
+import kmucs.mobileprogramming.team.a.blocklylmc.materialshowcaseview.ShowcaseConfig;
 
 public class EmulatorActivity extends AppCompatActivity implements View.OnClickListener, NumberPicker.OnValueChangeListener {
 
@@ -85,6 +87,20 @@ public class EmulatorActivity extends AppCompatActivity implements View.OnClickL
 //        }
 //        ArrayAdapter<String> lmcMemSpinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, lmcSpinnerItem);
 //        lmcMemorySpinner.setAdapter(lmcMemSpinnerAdapter);
+
+        int delay = 50;
+        ShowcaseConfig config = new ShowcaseConfig();
+        config.setDelay(delay); // half second between each showcase view
+
+        MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(EmulatorActivity.this, getResources().getText(R.string.tutorial_emulator).toString());
+        sequence.setConfig(config);
+        sequence.addSequenceItem(lmcRegisterView, getResources().getText(R.string.tutorial_emulator_register).toString(), getResources().getText(R.string.tutorial_agree).toString());
+        sequence.addSequenceItem(lmcCycle, getResources().getText(R.string.tutorial_emulator_cycle).toString(), getResources().getText(R.string.tutorial_agree).toString());
+        sequence.addSequenceItem(memoryRecyclerView, getResources().getText(R.string.tutorial_emulator_memory).toString(), getResources().getText(R.string.tutorial_agree).toString());
+        sequence.addSequenceItem(buttonStep, getResources().getText(R.string.tutorial_emulator_step).toString(), getResources().getText(R.string.tutorial_agree).toString());
+        sequence.addSequenceItem(buttonReset, getResources().getText(R.string.tutorial_emulator_reset).toString(), getResources().getText(R.string.tutorial_agree).toString());
+//        sequence.addSequenceItem(btn_submit, getResources().getText(R.string.tutorial_blockly_submit).toString(), getResources().getText(R.string.tutorial_agree).toString());
+        sequence.start();
     }
 
     void refreshRecycler(int position) {
